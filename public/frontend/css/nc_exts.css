@@ -1,0 +1,1613 @@
+.apple-pay-wrapper {
+    display: none;
+    text-align: center
+}
+
+@supports(-webkit-appearance:-apple-pay-button) {
+    .apple-pay-button-with-text {
+        display: inline-block;
+        -webkit-appearance: -apple-pay-button;
+        -apple-pay-button-type: buy;
+        width: 100%;
+        height: 44px
+    }
+    .apple-pay-button-with-text>* {
+        display: none
+    }
+    .apple-pay-button-black-with-text {
+        -apple-pay-button-style: #000
+    }
+    .apple-pay-button-white-with-text {
+        -apple-pay-button-style: #fff
+    }
+    .apple-pay-button-white-with-line-with-text {
+        -apple-pay-button-style: white-outline
+    }
+}
+
+@supports not (-webkit-appearance:-apple-pay-button) {
+    .apple-pay-button-with-text {
+        --apple-pay-scale: 1;
+        display: inline-flex;
+        justify-content: center;
+        font-size: 12px;
+        border-radius: 5px;
+        padding: 0;
+        box-sizing: border-box;
+        width: 100%;
+        height: 44px
+    }
+    .apple-pay-button-black-with-text {
+        background-color: #000;
+        color: #fff
+    }
+    .apple-pay-button-white-with-text {
+        background-color: #fff;
+        color: #000
+    }
+    .apple-pay-button-white-with-line-with-text {
+        background-color: #fff;
+        color: #000;
+        border: .5px solid #000
+    }
+    .apple-pay-button-with-text.apple-pay-button-black-with-text>.logo {
+        background-image: -webkit-named-image(apple-pay-logo-white);
+        background-color: #000
+    }
+    .apple-pay-button-with-text.apple-pay-button-white-with-text>.logo {
+        background-image: -webkit-named-image(apple-pay-logo-black);
+        background-color: #fff
+    }
+    .apple-pay-button-with-text.apple-pay-button-white-with-line-with-text>.logo {
+        background-image: -webkit-named-image(apple-pay-logo-black);
+        background-color: #fff
+    }
+    .apple-pay-button-with-text>.text {
+        font-family: -apple-system;
+        font-size: calc(1em * var(--apple-pay-scale));
+        font-weight: 300;
+        align-self: center;
+        margin-right: calc(2px * var(--apple-pay-scale))
+    }
+    .apple-pay-button-with-text>.logo {
+        width: calc(35px * var(--scale));
+        height: 100%;
+        background-size: 100% 60%;
+        background-repeat: no-repeat;
+        background-position: 0 50%;
+        margin-left: calc(2px * var(--apple-pay-scale));
+        border: none
+    }
+}
+
+#afterpay-modal-close {
+    float: right;
+    clear: right
+}
+
+#aftpay_popup_container {
+    overflow-y: auto;
+    overflow-y: -moz-scrollbars-vertical
+}
+
+@media screen and (min-width:771px)and (min-height:700px) {
+    .afterpay_modal_wrapper {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        max-width: 800px;
+        transform: translate(-50%, -50%)
+    }
+}
+
+:-moz-ui-invalid:not(output) {
+    box-shadow: none
+}
+
+.afterpay_modal_wrapper * {
+    box-sizing: border-box;
+    text-decoration: none;
+    background-color: #b2fce4;
+    font-family: italian plate no2 expanded, sans-serif
+}
+
+#afterpay-modal-modal {
+    overflow-y: auto;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    max-width: 75%;
+    height: auto;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-font-smoothing: antialiased;
+    border-radius: 0;
+    background-color: #b2fce4
+}
+
+.afterpay_modal_wrapper .grid-container .row-0 {
+    grid-area: header
+}
+
+.afterpay_modal_wrapper .grid-container .row-1 {
+    grid-area: main
+}
+
+.afterpay_modal_wrapper .grid-container .svg-1 {
+    grid-area: svg1
+}
+
+.afterpay_modal_wrapper .grid-container .svg-2 {
+    grid-area: svg2
+}
+
+.afterpay_modal_wrapper .grid-container .svg-3 {
+    grid-area: svg3
+}
+
+.afterpay_modal_wrapper .grid-container .svg-4 {
+    grid-area: svg4
+}
+
+.afterpay_modal_wrapper .grid-container .row-3 {
+    grid-area: footer
+}
+
+.afterpay_modal_wrapper .grid-container {
+    text-align: center;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-areas: "header header header header" "main main main main" "process-step-1 process-step-2 process-step-3 process-step-4" "footer footer footer footer"
+}
+
+.afterpay_modal_wrapper .grid-container>div {
+    align-content: stretch;
+    min-height: 15vh
+}
+
+.afterpay_modal_wrapper .grid-container .row-0 .afterpay-modal-logo .afterpay-logo-black,
+.afterpay-logo-badge-on-white-bg {
+    display: block;
+    max-width: 275px;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.afterpay_modal_wrapper .grid-container .row-1 {
+    padding-top: 15px
+}
+
+.afterpay_modal_wrapper .grid-container .row-1 h3.headline {
+    font-size: 44px;
+    font-weight: 600;
+    margin: 0
+}
+
+.afterpay_modal_wrapper .grid-container .process .process-icon-container {
+    height: 125px
+}
+
+.afterpay_modal_wrapper .grid-container .process .process-icon-container svg.process-icon {
+    max-width: 110px;
+    max-height: 95px
+}
+
+.afterpay_modal_wrapper .grid-container .process .process-icon-container svg.shopping-cart,
+.afterpay_modal_wrapper .grid-container .process .process-icon-container svg.four-payments {
+    margin-top: 30px
+}
+
+.afterpay_modal_wrapper .grid-container .process .process-icon-container svg.afterpay-desktop,
+.afterpay_modal_wrapper .grid-container .process .process-icon-container svg.sign-up-desktop {
+    margin-top: 50px
+}
+
+.afterpay_modal_wrapper .grid-container .process .process-icon-container svg.afterpay-mobile,
+.afterpay_modal_wrapper .grid-container .process .process-icon-container svg.sign-up-mobile {
+    display: none
+}
+
+.afterpay_modal_wrapper .grid-container .process p.process-subheading {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.25;
+    margin-top: 20px
+}
+
+.afterpay_modal_wrapper .grid-container>div.row-3 {
+    margin-top: 25px
+}
+
+.afterpay_modal_wrapper .grid-container>div.row-3 p.disclaimer {
+    font-size: 12px;
+    font-weight: 400;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.afterpay_modal_wrapper .grid-container>div.row-3 p.disclaimer span {
+    display: block
+}
+
+.afterpay_modal_wrapper .grid-container>div.row-3 p.disclaimer span.loan-agreement {
+    margin-top: 10px;
+    margin-bottom: 5px
+}
+
+@media(min-width:1000px) {
+    #afterpay-modal-modal {
+        max-width: 774px
+    }
+}
+
+@media(max-width:768px) {
+    #afterpay-modal-modal {
+        min-height: 100%;
+        min-width: 100%;
+        max-height: 50%;
+        padding-bottom: 5.5rem!important
+    }
+}
+
+@media(max-height:650px) {
+    #afterpay-modal-modal {
+        min-height: 100%;
+        min-width: 100%;
+        max-height: 50%;
+        padding-bottom: 5.5rem
+    }
+}
+
+@media only screen and (max-width:770px) {
+    .afterpay_modal_wrapper .grid-container {
+        grid-template-columns: auto;
+        grid-template-areas: "header" "main" "svg1" "svg2" "svg3" "svg4" "footer";
+        text-align: left;
+        padding: 0 30px 30px
+    }
+    .afterpay_modal_wrapper .grid-container>div {
+        min-height: 12vh
+    }
+    .afterpay_modal_wrapper .grid-container .row-0 .afterpay-modal-logo .afterpay-logo-black {
+        display: block;
+        max-width: 300px;
+        margin-left: 0;
+        margin-right: auto
+    }
+    .afterpay_modal_wrapper .grid-container .row-1 {}
+    .afterpay_modal_wrapper .grid-container .row-1 h3.headline {
+        font-size: 3.2em
+    }
+    .afterpay_modal_wrapper .grid-container .row-1 h3.headline span {
+        display: block
+    }
+    .afterpay_modal_wrapper .grid-container .process {
+        display: flex;
+        margin-top: 15px
+    }
+    .afterpay_modal_wrapper .grid-container .process-step-1 {
+        margin-top: 40px
+    }
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container {
+        display: flex;
+        flex-direction: row;
+        vertical-align: middle;
+        margin-right: 20px;
+        height: 105px
+    }
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.process-icon {
+        width: 120px;
+        max-height: 85px
+    }
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.afterpay-desktop,
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.sign-up-desktop {
+        display: none
+    }
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.afterpay-mobile,
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.sign-up-mobile {
+        display: block
+    }
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.shopping-cart,
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.four-payments {
+        margin-top: 0
+    }
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.afterpay-desktop,
+    .afterpay_modal_wrapper .grid-container .process .process-icon-container svg.sign-up-desktop {
+        margin-top: 0
+    }
+    .afterpay_modal_wrapper .grid-container .process p.process-subheading {
+        margin-top: 25px;
+        font-size: 15px
+    }
+    .afterpay_modal_wrapper .grid-container .process-step-3.process p.process-subheading,
+    .afterpay_modal_wrapper .grid-container .process-step-4.process p.process-subheading {
+        margin-top: 15px
+    }
+    .afterpay_modal_wrapper .grid-container>div.row-3 {
+        margin-top: 15px
+    }
+    .afterpay_modal_wrapper .grid-container>div.row-3 p.disclaimer {
+        max-width: 100%;
+        margin-top: 25px!important
+    }
+}
+
+.afterpay_modal_wrapper {
+    background-color: #b2fce4
+}
+
+.disclaimer-link {
+    color: #000;
+    text-decoration: underline
+}
+
+.disclaimer-link:active {
+    color: #000
+}
+
+.afterpay-modal-top {
+    text-align: center;
+    font-weight: 700;
+    padding-top: 1vh;
+    padding-bottom: 1vh
+}
+
+.afterpay-modal-top-close {
+    position: relative;
+    right: 20px;
+    top: 20px;
+    cursor: pointer
+}
+
+#afterpay-modal-overlay {
+    position: sticky;
+    top: 0;
+    background: 0 0
+}
+
+#afterpay-modal-overlay * {
+    background: inherit
+}
+
+.grid-container {
+    padding-top: 0
+}
+
+footer {
+    background-color: #21165e;
+    color: #fff
+}
+
+footer .footer-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 22px
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content {
+        margin-top: 80px;
+        padding-left: 38px;
+        padding-right: 38px
+    }
+}
+
+@media only screen and (min-width:78.125em) {
+    footer .footer-content {
+        padding-left: 127px;
+        padding-right: 127px
+    }
+}
+
+footer .footer-content .join-coupon-section {
+    margin-top: 40px;
+    font-size: 1em
+}
+
+footer .footer-content .join-coupon-section div {
+    margin-bottom: 15px
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content .join-coupon-section .join-coupon-content {
+        float: right;
+        max-width: 426px;
+        min-width: 350px
+    }
+}
+
+@media only screen and (min-width:78.125em) {
+    footer .footer-content .join-coupon-section .join-coupon-content {
+        max-width: 486px;
+        min-width: 426px
+    }
+}
+
+footer .footer-content .join-coupon-section .join-coupon-content .deal-text.input-error {
+    color: #c00050
+}
+
+footer .footer-content .join-coupon-section .submit-email {
+    height: 50px
+}
+
+footer .footer-content .join-coupon-section .submit-email .msg {
+    margin-top: .2em
+}
+
+footer .footer-content .join-coupon-section .submit-email .msg.input-error {
+    color: #c00050
+}
+
+footer .footer-content .join-coupon-section .submit-email form {
+    height: 100%
+}
+
+footer .footer-content .join-coupon-section .submit-email form input {
+    font-size: 1em;
+    line-height: 22px;
+    border-color: #21165e;
+    width: 100%;
+    padding-right: 40%;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-sizing: border-box
+}
+
+footer .footer-content .join-coupon-section .submit-email form .input-error {
+    border: solid 3px #c00050
+}
+
+footer .footer-content .join-coupon-section .submit-email form button.input-error {
+    border-left: none
+}
+
+footer .footer-content .join-coupon-section .submit-email form button {
+    color: #000;
+    font-weight: 300;
+    border: 1px solid #21165e;
+    box-sizing: border-box;
+    background-color: #ffc800;
+    border-left-color: #fff
+}
+
+footer .footer-content .join-coupon-section .submit-email form button:hover {
+    background-color: #f2ba35
+}
+
+footer .footer-content .social-links {
+    margin-top: 25px
+}
+
+footer .footer-content .social-links a {
+    padding: 5px;
+    margin: 10px;
+    display: inline-block
+}
+
+footer .footer-content .social-links a:first-child {
+    margin-left: 0
+}
+
+footer .footer-content .social-links a:last-child {
+    margin-right: 0
+}
+
+footer .footer-content .social-links a img {
+    display: inline;
+    height: 20px;
+    width: 20px
+}
+
+footer .footer-content .footer-nav-links {
+    border: solid 1px rgba(255, 255, 255, .1);
+    border-left: none;
+    border-right: none;
+    font-size: 1.5em;
+    line-height: 1.17;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    line-height: 22px
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content .footer-nav-links {
+        border: none;
+        font-size: 1.25em
+    }
+}
+
+footer .footer-content .footer-nav-links .pop-content {
+    margin-top: 16px;
+    z-index: 7
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content .footer-nav-links .pop-content {
+        margin-top: 0;
+        display: block
+    }
+}
+
+footer .footer-content .footer-nav-links .pop-content li {
+    margin-bottom: 16px;
+    font-size: .66em
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content .footer-nav-links .pop-content li {
+        margin-bottom: 12px;
+        font-size: .8em
+    }
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content .footer-nav-links>div:first-child {
+        margin-bottom: 20px
+    }
+}
+
+footer .footer-content .footer-nav-links>.pop-trigger {
+    z-index: 6
+}
+
+footer .footer-content .footer-nav-links>.pop-trigger+.pop-content+span:after {
+    content: "";
+    background-image: url(/Content/sass/Assets/UI/Caret.svg);
+    background-repeat: no-repeat;
+    background-position-y: -1px;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 17px;
+    width: 20px;
+    height: 20px
+}
+
+footer .footer-content .footer-nav-links>.pop-trigger+.pop-content+span:after.lazy-img {
+    background-image: none
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content .footer-nav-links>.pop-trigger+.pop-content+span:after {
+        display: none
+    }
+}
+
+footer .footer-content .footer-nav-links>.pop-trigger:checked~span:after {
+    transform: rotate(180deg)
+}
+
+footer .footer-content .affiliates {
+    height: 100px;
+    text-align: center;
+    margin-top: 50px;
+    z-index: 7
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content .affiliates {
+        text-align: left
+    }
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .footer-content .affiliates {
+        margin-top: 15px
+    }
+    footer .footer-content .affiliates div {
+        display: inline-block;
+        vertical-align: middle
+    }
+}
+
+footer .footer-content .affiliates img {
+    display: inline-block
+}
+
+footer .footer-content .affiliates.mcaffe-container>a,
+footer .footer-content .affiliates .mcaffe-container>a {
+    position: relative;
+    top: 25px
+}
+
+footer .footer-content .affiliates .trust-pilot-container {
+    text-align: center
+}
+
+@media only screen and (min-width:78.125em) {
+    footer .footer-content .affiliates .trust-pilot-container {
+        max-width: 32%
+    }
+}
+
+footer .footer-content .affiliates .trust-pilot-container>div {
+    display: inline-block;
+    float: none;
+    width: auto
+}
+
+footer .copy-right {
+    margin-top: 40px;
+    background-color: #302aaf;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .copy-right {
+        padding-left: 128px;
+        padding-right: 139px;
+        padding-top: 0;
+        padding-bottom: 0
+    }
+    footer .copy-right>div {
+        margin-top: 20px;
+        margin-bottom: 20px
+    }
+}
+
+@media only screen and (min-width:59.375em)and (min-width:59.375em) {
+    footer .copy-right>div {
+        margin-top: 12px;
+        margin-bottom: 12px;
+        display: inline
+    }
+}
+
+footer .copy-right .content>p {
+    display: inline
+}
+
+@media only screen and (max-width:25em) {
+    footer .copy-right .content>p {
+        display: block
+    }
+}
+
+footer .copy-right .last-updated {
+    margin-top: 10px
+}
+
+@media only screen and (min-width:59.375em) {
+    footer .copy-right .last-updated {
+        text-align: right
+    }
+}
+
+footer .copy-right .h6 {
+    color: #fff
+}
+
+.html-min {
+    height: 100%
+}
+
+.html-min .sticky-footer-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%
+}
+
+.html-min .sticky-footer-container>.site-footer {
+    margin-top: auto
+}
+
+.html-min .sticky-footer-container>.site-footer>.copy-right {
+    margin-top: 0
+}
+
+@media only screen and (min-width:59.375em) {
+    .html-min .sticky-footer-container>.site-footer>.copy-right {
+        text-align: center
+    }
+}
+
+.html-min .sticky-footer-container>.site-footer>.copy-right a {
+    color: #fff
+}
+
+.xfactorshipping-wrapper {
+    margin-top: 20px;
+    background-color: rgba(238, 238, 238, .3);
+    padding: 0 20px 20px;
+    text-align: center
+}
+
+.xfactorshipping-wrapper>div {
+    padding-top: 35px
+}
+
+.xfactorshipping-wrapper>div>div {
+    padding: 5px
+}
+
+.xfactorshipping-wrapper>div>div:first-child>img,
+.xfactorshipping-wrapper>div>div:first-child>picture {
+    margin: auto
+}
+
+.xfactorshipping-wrapper>div>div:nth-child(2) {
+    font-size: 18px
+}
+
+.xfactorshipping-wrapper>div>div:nth-child(3) {
+    font-size: 14px
+}
+
+.xfactorshipping-wrapper>div>div:nth-child(3)>div:nth-child(3),
+.xfactorshipping-wrapper>div>div:nth-child(3)>div:nth-child(5) {
+    padding-top: 5px
+}
+
+.xfactorshipping-wrapper>div>div:nth-child(3)>a {
+    display: block;
+    padding: 2px
+}
+
+.xfactorshipping-wrapper .cart-faq-link {
+    display: block
+}
+
+.xfactorshipping-wrapper .cart-faq-link .in {
+    display: none
+}
+
+.reviews {
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 40px
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews {
+        padding-left: 20px;
+        padding-right: 20px
+    }
+}
+
+.reviews .review-header {
+    color: #21165e;
+    font-size: 1.75em;
+    line-height: 32px
+}
+
+@media only screen and (min-width:59.375em) {
+    .reviews .review-header {
+        font-size: 2.5em;
+        line-height: 46px
+    }
+}
+
+.reviews .stars-container .pr-stars {
+    display: inline-block;
+    float: none
+}
+
+.reviews .stars-container>span {
+    vertical-align: top;
+    border: 1.5px #555 solid;
+    padding: 0 6px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #555;
+    line-height: 19px
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .summary-container {
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(33, 22, 94, .1)
+    }
+}
+
+@media only screen and (min-width:59.375em) {
+    .reviews .summary-container {
+        margin-top: 12px;
+        height: 240px;
+        padding-bottom: 40px;
+        border-bottom: 1px solid rgba(33, 22, 94, .1)
+    }
+}
+
+.reviews .summary-container .header-large {
+    font-size: 1.875em;
+    line-height: 35px
+}
+
+@media only screen and (min-width:59.375em) {
+    .reviews .summary-container .header-large {
+        font-size: 2.5em;
+        line-height: 46px
+    }
+}
+
+.reviews .summary-container .header-large>img,
+.reviews .summary-container .header-large>picture {
+    margin-right: 2px;
+    display: inline-block;
+    vertical-align: top
+}
+
+@media only screen and (min-width:59.375em) {
+    .reviews .summary-container .header-large>img,
+    .reviews .summary-container .header-large>picture {
+        vertical-align: initial
+    }
+}
+
+.reviews .summary-container>div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(33, 22, 94, .1)
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .summary-container>div {
+        height: 240px;
+        padding-top: 40px;
+        padding-left: 45px;
+        padding-right: 45px
+    }
+    .reviews .summary-container>div:nth-child(2) {
+        border-right: 1px solid rgba(33, 22, 94, .1)
+    }
+    .reviews .summary-container>div:not(:first-child) {
+        border-bottom: none;
+        margin-top: 40px
+    }
+}
+
+@media only screen and (min-width:37.5em)and (min-width:59.375em) {
+    .reviews .summary-container>div:not(:first-child) {
+        margin-top: 0
+    }
+}
+
+@media only screen and (min-width:59.375em) {
+    .reviews .summary-container>div {
+        height: 100%;
+        border-right: 1px solid rgba(33, 22, 94, .1);
+        padding-left: 30px;
+        padding-right: 30px;
+        border-bottom: none
+    }
+    .reviews .summary-container>div:last-child {
+        border-right: none
+    }
+}
+
+@media only screen and (min-width:78.125em) {
+    .reviews .summary-container>div {
+        padding-left: 60px;
+        padding-right: 60px
+    }
+}
+
+.reviews .summary-container .review-snippet .review-count {
+    text-decoration: none;
+    margin-bottom: 19px;
+    margin-left: 0;
+    width: 100%
+}
+
+.reviews .summary-container .review-snippet .write-review {
+    height: 40px;
+    background-color: #fff;
+    color: #000;
+    border: 1.5px solid #302aaf;
+    width: 100%;
+    font-size: 1em;
+    line-height: 40px;
+    display: inline-block
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .summary-container .review-snippet .write-review {
+        width: 60%
+    }
+}
+
+@media only screen and (min-width:46.875em) {
+    .reviews .summary-container .review-snippet .write-review {
+        width: 100%
+    }
+}
+
+.reviews .summary-container .review-snippet .write-review:hover {
+    background-color: #bfc6fe
+}
+
+.reviews .summary-container .recommended>div>div:nth-child(2) {
+    float: none;
+    margin: 0 auto;
+    max-width: 175px;
+    line-height: 19px;
+    font-size: .875em;
+    padding: 15px
+}
+
+.reviews .summary-container .histogram>div {
+    text-align: left
+}
+
+.reviews .summary-container .histogram>div .filter-by-score>span {
+    display: inline-block;
+    width: 50px
+}
+
+.reviews .summary-container .histogram>div>div {
+    margin-bottom: 15px;
+    float: none;
+    display: inline-block;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap
+}
+
+.reviews .summary-container .histogram>div>div:hover {
+    cursor: pointer
+}
+
+.reviews .summary-container .histogram>div>div div {
+    display: inline-block;
+    width: auto
+}
+
+.reviews .summary-container .histogram>div>div>span {
+    float: none
+}
+
+.reviews .summary-container .histogram .bar-container {
+    background-color: #eee;
+    width: 60%;
+    margin-left: 20px;
+    margin-right: 20px;
+    float: none
+}
+
+.reviews .summary-container .histogram .bar-container .bar {
+    height: 20px;
+    background-color: #302aaf
+}
+
+.reviews .face-off-container {
+    text-align: left;
+    border-bottom: 1px solid rgba(33, 22, 94, .1)
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .face-off-container {
+        padding-bottom: 20px;
+        padding-top: 20px
+    }
+}
+
+.reviews .face-off-container>.c2-6-of-12 {
+    margin-top: 20px;
+    padding-bottom: 20px
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .face-off-container>div:first-child {
+        padding-right: 24px
+    }
+    .reviews .face-off-container>div:last-child {
+        padding-left: 24px
+    }
+}
+
+.reviews .face-off-container>div:first-child {
+    border-bottom: 1px solid rgba(33, 22, 94, .1)
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .face-off-container>div:first-child {
+        border-right: 1px solid rgba(33, 22, 94, .1);
+        border-bottom: none;
+        padding-bottom: 0
+    }
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .face-off-container>div:last-child {
+        margin-top: -2px
+    }
+}
+
+.reviews .face-off-container>div>div {
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .face-off-container>div>div {
+        padding-left: 30px;
+        padding-right: 30px
+    }
+}
+
+.reviews .face-off-container>div>div .span {
+    display: inline
+}
+
+.reviews .face-off-container>div>div>div>div .pop-trigger:checked {
+    display: none
+}
+
+.reviews .face-off-container>div>div>div>div .pop-trigger:checked~.read-more {
+    display: none
+}
+
+.reviews .face-off-container>div>div>div>div .pop-trigger:checked~.pop-content {
+    display: contents
+}
+
+.reviews .face-off-container>div>div span.link-1 {
+    display: block;
+    margin-top: 10px
+}
+
+.reviews .face-off-container>div .pop {
+    font-size: .875em;
+    line-height: 19px
+}
+
+.reviews .face-off-container>div .read-more-container {
+    display: contents
+}
+
+.reviews .face-off-container>span {
+    position: relative;
+    font-size: 1.125em;
+    border: 1px solid rgba(33, 22, 94, .1);
+    z-index: 6;
+    width: 50px;
+    height: 30px;
+    left: 45%;
+    bottom: 10px;
+    padding: 3px 13px;
+    background-color: #fff
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews .face-off-container>span {
+        left: -27px;
+        top: 150px
+    }
+}
+
+@media only screen and (min-width:46.875em) {
+    .reviews .face-off-container>span {
+        top: 125px
+    }
+}
+
+@media only screen and (min-width:59.375em) {
+    .reviews .face-off-container>span {
+        top: 110px
+    }
+}
+
+.write-review-container div {
+    width: auto;
+    float: initial
+}
+
+.write-review-container .p-w-r .pr-star-v4-0-filled {
+    background-image: url(https://img.fragrancex.com/images/pr/star-0-filled.png);
+    width: 15px;
+    height: 15px
+}
+
+.write-review-container .p-w-r .pr-star-v4-25-filled {
+    background-image: url(https://img.fragrancex.com/images/pr/star-25-filled.png);
+    width: 15px;
+    height: 15px
+}
+
+.write-review-container .p-w-r .pr-star-v4-50-filled {
+    background-image: url(https://img.fragrancex.com/images/pr/star-50-filled.png);
+    height: 15px
+}
+
+.write-review-container .p-w-r .pr-star-v4-75-filled {
+    background-image: url(https://img.fragrancex.com/images/pr/star-75-filled.png);
+    width: 15px;
+    height: 15px
+}
+
+.write-review-container .p-w-r .pr-star-v4-100-filled {
+    background-image: url(https://img.fragrancex.com/images/pr/star-100-filled.png);
+    width: 15px;
+    height: 15px
+}
+
+.write-review-container .p-w-r .pr-btn-review {
+    float: left;
+    clear: right;
+    width: 100%;
+    margin: 15px 0 6px;
+    padding-right: 0
+}
+
+.reviews-list {
+    padding-top: 20px
+}
+
+@media only screen and (min-width:46.875em) {
+    .reviews-list {
+        padding-top: 30px
+    }
+}
+
+.reviews-list>div {
+    margin-bottom: 10px;
+    text-align: left
+}
+
+.reviews-list>div .reviews-select-container {
+    text-align: right
+}
+
+.reviews-list>div .reviews-select-container select {
+    width: 160px;
+    height: 40px;
+    border-radius: 3px;
+    border: solid 1.5px #302aaf;
+    padding: 9px 15px
+}
+
+@media only screen and (min-width:59.375em) {
+    .reviews-list>div .reviews-select-container select {
+        width: 220px
+    }
+}
+
+.reviews-list>div .reviews-select-container select option:checked {
+    text-decoration: underline
+}
+
+.reviews-list>div .reviews-select-container select option:hover {
+    text-decoration: underline;
+    color: #302aaf
+}
+
+.reviews-list .customer-reviews .review {
+    border-bottom: 1px solid rgba(33, 22, 94, .1);
+    padding-bottom: 20px
+}
+
+@media only screen and (min-width:46.875em) {
+    .reviews-list .customer-reviews .review {
+        padding-bottom: 40px
+    }
+}
+
+.reviews-list .customer-reviews .review>div {
+    margin-top: 10px
+}
+
+.reviews-list .customer-reviews .review>div>p {
+    margin-bottom: 4px
+}
+
+@media only screen and (min-width:46.875em) {
+    .reviews-list .customer-reviews .review .review-text {
+        padding-right: 20px
+    }
+}
+
+.reviews-list .customer-reviews .review .review-text>div .h3 {
+    font-size: 1.125em;
+    line-height: 24px;
+    margin-bottom: 5px
+}
+
+.reviews-list .customer-reviews .review .review-text>div>p {
+    color: #222;
+    font-size: .875em;
+    line-height: 19px
+}
+
+.reviews-list .customer-reviews .review .review-text>div:first-child {
+    margin-bottom: 10px
+}
+
+.reviews-list .customer-reviews .review .thumbs-container {
+    margin-top: 20px
+}
+
+@media only screen and (min-width:46.875em) {
+    .reviews-list .customer-reviews .review .thumbs-container {
+        margin-top: 10px
+    }
+}
+
+.reviews-list .customer-reviews .review .thumbs-container>p {
+    font-size: .875em;
+    line-height: 19px
+}
+
+.reviews-list .customer-reviews .review .thumbs-container>div {
+    font-size: 0
+}
+
+.reviews-list .customer-reviews .review .thumbs-container>div>button {
+    width: 65px;
+    height: 33px;
+    background-color: inherit;
+    border: 1px solid rgba(33, 22, 94, .1);
+    padding: 5px
+}
+
+.reviews-list .customer-reviews .review .thumbs-container>div>button:first-child {
+    border-right: 1px solid rgba(33, 22, 94, .1)
+}
+
+.reviews-list .customer-reviews .review .thumbs-container>div>button>img,
+.reviews-list .customer-reviews .review .thumbs-container>div>button>picture {
+    display: inline-block
+}
+
+.reviews-list .customer-reviews .review .thumbs-container>div>button>span {
+    vertical-align: super;
+    padding-left: 2px
+}
+
+.reviews-list .customer-reviews .review:last-child {
+    border-bottom: none
+}
+
+.reviews-list .pagination-sect {
+    margin-top: 37px
+}
+
+.reviews-list .pagination-sect .pagination {
+    text-align: center;
+    white-space: nowrap
+}
+
+.reviews-list .pagination-sect .pagination .page-number {
+    margin-left: 10px;
+    margin-right: 10px
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews-list .pagination-sect .pagination .page-number {
+        margin-left: 30px;
+        margin-right: 30px
+    }
+}
+
+.reviews-list .pagination-sect .pagination .page-number a,
+.reviews-list .pagination-sect .pagination .page-number span {
+    padding: 10px 17px
+}
+
+.reviews-list .pagination-sect .pagination .page-number a.min-page:not(.selected),
+.reviews-list .pagination-sect .pagination .page-number a.max-page:not(.selected),
+.reviews-list .pagination-sect .pagination .page-number span.min-page:not(.selected),
+.reviews-list .pagination-sect .pagination .page-number span.max-page:not(.selected) {
+    display: none
+}
+
+@media only screen and (min-width:37.5em) {
+    .reviews-list .pagination-sect .pagination .page-number a.min-page:not(.selected),
+    .reviews-list .pagination-sect .pagination .page-number a.max-page:not(.selected),
+    .reviews-list .pagination-sect .pagination .page-number span.min-page:not(.selected),
+    .reviews-list .pagination-sect .pagination .page-number span.max-page:not(.selected) {
+        display: inline
+    }
+}
+
+.reviews-list .pagination-sect .pagination .page-number .selected {
+    border: 1px solid #302aaf;
+    border-radius: 3px
+}
+
+.reviews-list .pagination-sect .pagination .page-number .selected:hover {
+    background-color: #bfc6fe
+}
+
+#coupon-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .5);
+    z-index: 30
+}
+
+#coupon-popup .coupon-container {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    background-color: #302aaf;
+    color: #fff;
+    text-align: center;
+    padding: 10px 38px 12px
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container {
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 3px;
+        bottom: inherit;
+        width: 86%;
+        max-width: 800px;
+        padding-top: 28px;
+        padding-bottom: 72px
+    }
+}
+
+@media only screen and (min-width:46.875em)and (max-height:600px) {
+    #coupon-popup .coupon-container {
+        top: 50%;
+        padding-top: 15px;
+        padding-bottom: 5px
+    }
+}
+
+#coupon-popup .coupon-container>div {
+    margin-bottom: 10px
+}
+
+#coupon-popup .coupon-container>div:first-child {
+    font-size: 20px;
+    margin-bottom: 15px
+}
+
+#coupon-popup .coupon-container>div img.close-popup {
+    position: absolute;
+    top: 5px;
+    left: 100%
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container>div img.close-popup {
+        top: -10px
+    }
+}
+
+#coupon-popup .coupon-container>div img.close-popup:hover {
+    cursor: pointer
+}
+
+#coupon-popup .coupon-container>div .logo {
+    width: 130px;
+    height: 34px;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    font-size: 11px
+}
+
+#coupon-popup .coupon-container>form>div {
+    margin-bottom: 14px
+}
+
+@media only screen and (max-height:400px) {
+    #coupon-popup .coupon-container>form>div {
+        margin-bottom: 5px
+    }
+}
+
+#coupon-popup .coupon-container>form>div>input[type=email] {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 2px transparent
+}
+
+#coupon-popup .coupon-container>form>div>input[type=email]:focus {
+    border: solid 2px #ffc800
+}
+
+#coupon-popup .coupon-container>form>div>input[type=email].input-validation-error {
+    border-color: #c00050;
+    box-shadow: 0 0 5px 0 #c00050
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container>form>div>input[type=email] {
+        width: 50%
+    }
+}
+
+@media only screen and (max-height:400px) {
+    #coupon-popup .coupon-container>form>div>input[type=email] {
+        padding-top: 8px;
+        padding-bottom: 8px
+    }
+}
+
+#coupon-popup .coupon-container>form .error-text {
+    text-align: left;
+    margin-top: -10px;
+    font-weight: 600;
+    color: #ffc800
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container>form .error-text {
+        text-align: inherit
+    }
+}
+
+#coupon-popup .coupon-container .desktop-offer {
+    margin-bottom: 38px
+}
+
+@media only screen and (max-height:600px) {
+    #coupon-popup .coupon-container .desktop-offer {
+        margin-bottom: 5px
+    }
+}
+
+#coupon-popup .coupon-container .desktop-offer .offer-text {
+    font-size: 120px;
+    margin-bottom: 33px
+}
+
+@media only screen and (max-height:600px) {
+    #coupon-popup .coupon-container .desktop-offer .offer-text {
+        font-size: 80px;
+        margin-bottom: 5px
+    }
+}
+
+#coupon-popup .coupon-container .popup-response>div {
+    display: inline;
+    font-size: 16px
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container .popup-response>div:first-child {
+        margin-bottom: 14px
+    }
+}
+
+#coupon-popup .coupon-container .popup-response>div .close-popup.link {
+    width: 100%;
+    text-decoration: underline;
+    vertical-align: sub;
+    margin-top: 11px
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container .popup-response>div .close-popup.link {
+        width: 50%
+    }
+}
+
+#coupon-popup .coupon-container .popup-response>div .submit-email {
+    width: 100%;
+    background-color: #ffc800;
+    border: none;
+    color: #000;
+    padding: 14px 5px;
+    font-size: 16px
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container .popup-response>div .submit-email {
+        width: 50%;
+        font-size: 24px
+    }
+}
+
+@media only screen and (max-height:400px) {
+    #coupon-popup .coupon-container .popup-response>div .submit-email {
+        padding: 5px
+    }
+}
+
+#coupon-popup .coupon-container .popup-response>div .submit-email:hover {
+    cursor: pointer
+}
+
+#coupon-popup .coupon-container .desktop-content {
+    display: none
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container .desktop-content {
+        display: inline
+    }
+}
+
+#coupon-popup .coupon-container .mobile-content {
+    display: block
+}
+
+@media only screen and (min-width:46.875em) {
+    #coupon-popup .coupon-container .mobile-content {
+        display: none
+    }
+}
+
+#attentive_creative {
+    height: 400px!important;
+    display: none
+}
+
+@media only screen and (min-width:47.5em) {
+    #attentive_creative {
+        height: 100%!important
+    }
+}
+
+.customer-review-cell {
+    text-align: center
+}
+
+.customer-review-cell>div.review-text {
+    color: #21165e
+}
+
+.customer-review-cell>div.review-name {
+    text-transform: capitalize
+}
+
+.customer-review-cell>div.review-img>img,
+.customer-review-cell>div.review-img>picture {
+    margin: auto
+}
+
+#aftpay_popup_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    z-index: 30
+}
+
+#aftpay_popup_container #afterpay-modal-close {
+    z-index: 31
+}
+
+#aftpay_popup_container .afterpay-modal-top-close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+    width: auto
+}
+
+#aftpay_popup_container .process-icon-container {
+    width: auto
+}
+
+@media only screen and (min-width:46.875em) {
+    #aftpay_popup_container .process-icon-container {
+        width: inherit
+    }
+    #aftpay_popup_container .process-icon-container .process-icon.afterpay-desktop,
+    #aftpay_popup_container .process-icon-container .process-icon.sign-up-desktop {
+        margin-top: 15px
+    }
+    #aftpay_popup_container .process-icon-container .process-icon.four-payments,
+    #aftpay_popup_container .process-icon-container .process-icon.shopping-cart {
+        margin-top: 0
+    }
+}
+
+.flush604 {}
