@@ -1,15 +1,15 @@
 @extends('frontend.layouts.master')
 @section('title')
-{{ $category->title?? 'No Title' }}
+{{ $category->title?? 'Checkout' }}
 @endsection
 @section('meta_title')
-{{ $category->meta_title?? 'No MetaTitle' }}
+{{ $category->meta_title?? 'Checkout' }}
 @endsection
 @section('meta_description')
-{{ $category->meta_description?? 'No MetaDescription' }}
+{{ $category->meta_description?? 'Checkout' }}
 @endsection
 @section('meta_keyword')
-{{ $category->meta_keyword?? 'No MetaKeyword' }}
+{{ $category->meta_keyword?? 'Checkout' }}
 @endsection
 
 
@@ -75,7 +75,7 @@ or
 <span></span>
 </section> --}}
 
-<form method="post" action="{{ route('front.save.order') }}">
+<form id="submitOrder" method="post" action="{{ route('front.save.order') }}">
 @csrf
 <section class="shipping-address c4-8-of-12 ">
 <div>
@@ -94,7 +94,7 @@ Use map to automatically fill out fields or enter manually.
 <div>
 <label for="EmailAddress">Email</label>
 <input  class="c-12-of-12 c4-6-of-12"
-name="email" type="email" value="{{ old('email')}}" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+name="email" type="email" value="{{ old('email')}}" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;" required>
 <div class="error-text">
 @error('email')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -103,7 +103,7 @@ name="email" type="email" value="{{ old('email')}}" style="background-image: url
 </div>
 <div class="name-section">
 <label for="ShippingFirstName">First Name</label>
-<input class="c-12-of-12 c4-6-of-12"  name="first_name" type="text" value="{{ old('first_name')}}">
+<input class="c-12-of-12 c4-6-of-12"  name="first_name" type="text" value="{{ old('first_name')}}" required>
 <div class="error-text">
 @error('first_name')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -112,7 +112,7 @@ name="email" type="email" value="{{ old('email')}}" style="background-image: url
 </div>
 <div class="name-section">
 <label for="ShippingFirstName">Last Name</label>
-<input class="c-12-of-12 c4-6-of-12"  name="last_name" type="text" value="{{ old('last_name')}}">
+<input class="c-12-of-12 c4-6-of-12"  name="last_name" type="text" value="{{ old('last_name')}}"required>
 <div class="error-text">
 @error('last_name')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -121,7 +121,7 @@ name="email" type="email" value="{{ old('email')}}" style="background-image: url
 </div>
 <div class="name-section">
 <label for="ShippingFirstName">Address 1</label>
-<input class="c-12-of-12 c4-6-of-12"  name="address_1" type="text" value="{{ old('address_1')}}">
+<input class="c-12-of-12 c4-6-of-12"  name="address_1" type="text" value="{{ old('address_1')}}"required>
 <div class="error-text">
 @error('address_1')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -140,7 +140,7 @@ name="email" type="email" value="{{ old('email')}}" style="background-image: url
 
 <div class="name-section">
 <label for="ShippingFirstName">House No.</label>
-<input class="c-12-of-12 c4-6-of-12"  name="house_no" type="text" value="{{ old('house_no')}}">
+<input class="c-12-of-12 c4-6-of-12"  name="house_no" type="text" value="{{ old('house_no')}}"required>
 <div class="error-text">
 @error('house_no')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -157,6 +157,24 @@ name="email" type="email" value="{{ old('email')}}" style="background-image: url
 </div>
 </div>
 <div class="name-section">
+<label for="ShippingCountry">Country</label>
+<div class="c-12-of-12 c4-6-of-12">
+<div class="select-container">
+@php
+$countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
+@endphp
+<select  name="country">
+{{-- <option>Please select country</option> --}}
+<option selected disabled="false">Paksitan</option>
+</select>
+</div>
+@error('country')
+<div class="alert alert-danger">{{ $message }}</div>
+@enderror
+</div>
+</div>
+
+{{-- <div class="name-section">
 <label for="ShippingFirstName">City</label>
 <input class="c-12-of-12 c4-6-of-12"  name="city" type="text" value="{{ old('city')}}">
 <div class="error-text">
@@ -164,7 +182,33 @@ name="email" type="email" value="{{ old('email')}}" style="background-image: url
 <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 </div>
-</div>
+</div> --}}
+
+<div class="name-section">
+    <label for="ShippingCountry">City</label>
+    <div class="c-12-of-12 c4-6-of-12">
+    <div class="select-container">
+    @php
+    $cities = \App\Models\ShippingCharge::select('city')->where('status',1)->orderby('city','asc')->get();
+
+    @endphp
+    <select  name="city" required>
+    {{-- <option>Please select country</option> --}}
+    <option selected disabled="true">Please Select City</option>
+    @foreach($cities->unique('city')  as $city)
+     <option {{ (old('city') == $city->city)? 'selected':''  }}>{{ $city->city??'' }}</option>
+    @endforeach
+    </select>
+    </div>
+    @error('city')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    </div>
+    </div>
+
+
+
+
 <div class="name-section">
 <label for="ShippingFirstName">State or Prov.</label>
 <input class="c-12-of-12 c4-6-of-12"  name="state_province" type="text" value="{{ old('state_province')}}">
@@ -183,31 +227,9 @@ name="email" type="email" value="{{ old('email')}}" style="background-image: url
 @enderror
 </div>
 </div>
-<div>
-<label for="ShippingCountry">Country</label>
-<div class="c-12-of-12 c4-6-of-12">
-<div class="select-container">
-@php
-$countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
-@endphp
-<select  name="country">
-<option selected disabled="true">Please select country</option>
-@foreach($countries as $country)
-<option>{{ $country }}</option>
-@endforeach
-</select>
-</div>
-@error('country')
-<div class="alert alert-danger">{{ $message }}</div>
-@enderror
-</div>
-<div class="error-text">
-<span class="field-validation-valid" data-valmsg-for="ShippingCountry" data-valmsg-replace="true"></span>
-</div>
-</div>
 <div class="name-section">
-<label for="ShippingFirstName">Phone</label>
-<input class="c-12-of-12 c4-6-of-12"  name="phone" type="number" value="{{ old('phone')}}" pattern="[/(+92|03)\d{9}/]">
+<label for="ShippingFirstName">Phone (+92/03)</label>
+<input class="c-12-of-12 c4-6-of-12"  name="phone" type="number" value="{{ old('phone')}}"  required>
 <div class="error-text">
 @error('phone')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -245,7 +267,7 @@ Use map to automatically fill out fields or enter manually.
 <div>
 <label for="EmailAddress">Email</label>
 <input  class="c-12-of-12 c4-6-of-12"
-name="d_email" type="email" value="{{ old('d_email')}}" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+name="d_email" type="email" value="{{ old('d_email')}}" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfBJREFUWAntVk1OwkAUZkoDKza4Utm61iP0AqyIDXahN2BjwiHYGU+gizap4QDuegWN7lyCbMSlCQjU7yO0TOlAi6GwgJc0fT/fzPfmzet0crmD7HsFBAvQbrcrw+Gw5fu+AfOYvgylJ4TwCoVCs1ardYTruqfj8fgV5OUMSVVT93VdP9dAzpVvm5wJHZFbg2LQ2pEYOlZ/oiDvwNcsFoseY4PBwMCrhaeCJyKWZU37KOJcYdi27QdhcuuBIb073BvTNL8ln4NeeR6NRi/wxZKQcGurQs5oNhqLshzVTMBewW/LMU3TTNlO0ieTiStjYhUIyi6DAp0xbEdgTt+LE0aCKQw24U4llsCs4ZRJrYopB6RwqnpA1YQ5NGFZ1YQ41Z5S8IQQdP5laEBRJcD4Vj5DEsW2gE6s6g3d/YP/g+BDnT7GNi2qCjTwGd6riBzHaaCEd3Js01vwCPIbmWBRx1nwAN/1ov+/drgFWIlfKpVukyYihtgkXNp4mABK+1GtVr+SBhJDbBIubVw+Cd/TDgKO2DPiN3YUo6y/nDCNEIsqTKH1en2tcwA9FKEItyDi3aIh8Gl1sRrVnSDzNFDJT1bAy5xpOYGn5fP5JuL95ZjMIn1ya7j5dPGfv0A5eAnpZUY3n5jXcoec5J67D9q+VuAPM47D3XaSeL4AAAAASUVORK5CYII=&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;" required>
 <div class="error-text">
 @error('d_email')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -254,7 +276,7 @@ name="d_email" type="email" value="{{ old('d_email')}}" style="background-image:
 </div>
 <div class="name-section">
 <label for="ShippingFirstName">First Name</label>
-<input class="c-12-of-12 c4-6-of-12"  name="d_first_name" type="text" value="{{ old('d_first_name')}}">
+<input class="c-12-of-12 c4-6-of-12"  name="d_first_name" type="text" value="{{ old('d_first_name')}}"required>
 <div class="error-text">
 @error('d_first_name')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -263,7 +285,7 @@ name="d_email" type="email" value="{{ old('d_email')}}" style="background-image:
 </div>
 <div class="name-section">
 <label for="ShippingFirstName">Last Name</label>
-<input class="c-12-of-12 c4-6-of-12"  name="d_last_name" type="text" value="{{ old('d_last_name')}}">
+<input class="c-12-of-12 c4-6-of-12"  name="d_last_name" type="text" value="{{ old('d_last_name')}}"required>
 <div class="error-text">
 @error('d_last_name')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -272,7 +294,7 @@ name="d_email" type="email" value="{{ old('d_email')}}" style="background-image:
 </div>
 <div class="name-section">
 <label for="ShippingFirstName">Address 1</label>
-<input class="c-12-of-12 c4-6-of-12"  name="d_address_1" type="text" value="{{ old('d_address_1')}}">
+<input class="c-12-of-12 c4-6-of-12"  name="d_address_1" type="text" value="{{ old('d_address_1')}}"required>
 <div class="error-text">
 @error('d_address_1')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -291,7 +313,7 @@ name="d_email" type="email" value="{{ old('d_email')}}" style="background-image:
 
 <div class="name-section">
 <label for="ShippingFirstName">House No.</label>
-<input class="c-12-of-12 c4-6-of-12"  name="d_house_no" type="text" value="{{ old('d_house_no')}}">
+<input class="c-12-of-12 c4-6-of-12"  name="d_house_no" type="text" value="{{ old('d_house_no')}}"required>
 <div class="error-text">
 @error('d_house_no')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -307,7 +329,8 @@ name="d_email" type="email" value="{{ old('d_email')}}" style="background-image:
 @enderror
 </div>
 </div>
-<div class="name-section">
+
+{{-- <div class="name-section">
 <label for="ShippingFirstName">City</label>
 <input class="c-12-of-12 c4-6-of-12"  name="d_city" type="text" value="{{ old('d_city')}}">
 <div class="error-text">
@@ -315,7 +338,34 @@ name="d_email" type="email" value="{{ old('d_email')}}" style="background-image:
 <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 </div>
-</div>
+</div> --}}
+
+
+
+<div class="name-section">
+    <label for="ShippingCountry">City</label>
+    <div class="c-12-of-12 c4-6-of-12">
+    <div class="select-container">
+    @php
+    $cities = \App\Models\ShippingCharge::select('city')->where('status',1)->orderby('city','asc')->get();
+
+    @endphp
+    <select  name="d_city" required>
+    {{-- <option>Please select country</option> --}}
+    <option selected disabled="true">Please Select City</option>
+    @foreach($cities->unique('city') as $city)
+     <option {{ (old('d_city') == $city->city)? 'selected':''  }}>{{ $city->city??'' }}</option>
+    @endforeach
+    </select>
+    </div>
+    @error('d_city')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+    </div>
+    </div>
+
+
+
 <div class="name-section">
 <label for="ShippingFirstName">State or Prov.</label>
 <input class="c-12-of-12 c4-6-of-12"  name="d_state_province" type="text" value="{{ old('d_state_province')}}">
@@ -334,7 +384,7 @@ name="d_email" type="email" value="{{ old('d_email')}}" style="background-image:
 @enderror
 </div>
 </div>
-<div>
+<div class="name-section"
 <label for="ShippingCountry">Country</label>
 <div class="c-12-of-12 c4-6-of-12">
 <div class="select-container">
@@ -342,23 +392,22 @@ name="d_email" type="email" value="{{ old('d_email')}}" style="background-image:
 $countries = array("Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe");
 @endphp
 <select  name="d_country">
-<option selected disabled="true">Please select country</option>
-@foreach($countries as $country)
+<option selected>Pakistan</option>
+{{-- @foreach($countries as $country)
 <option>{{ $country }}</option>
-@endforeach
+@endforeach --}}
 </select>
 </div>
 @error('country')
 <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 </div>
-<div class="error-text">
-<span class="field-validation-valid" data-valmsg-for="ShippingCountry" data-valmsg-replace="true"></span>
 </div>
-</div>
+
+
 <div class="name-section">
 <label for="ShippingFirstName">Phone</label>
-<input class="c-12-of-12 c4-6-of-12"  name="d_phone" type="text" value="{{ old('d_phone')}}" pattern="/(+92|03)\d{9}/">
+<input class="c-12-of-12 c4-6-of-12"  name="d_phone" type="text" value="{{ old('d_phone')}}" required>
 <div class="error-text">
 @error('d_phone')
 <div class="alert alert-danger">{{ $message }}</div>
@@ -445,7 +494,7 @@ Payment Method
 </div>
 <div>
 
-<input name="payment_method" type="radio" class="input-payment-method" value="COD">
+<input name="payment_method" type="radio" class="input-payment-method" value="COD" checked>
 <label>
 Cash on Delivery
 </label>
@@ -454,7 +503,7 @@ Cash on Delivery
 
 <input name="payment_method" type="radio" value="Bank Transfer">
 <label>
-Bank Transfer (After transfer send screenshot to this number : +92306511418)
+Bank Transfer (Easypesa etc.After transfer send screenshot to this number : +92306511418 with your order tracking no#)
 </label>
 </div>
 
@@ -526,8 +575,8 @@ $brand_slug = $product->product->brand->slug;
 <div class="c0-5-of-12 c-4-of-12 c3-3-of-12 c5-2-of-12 item-img">
 <a href="{{ route('front.product.show', [$brand_slug, $product->product->slug]) }}" aria-label="Light Blue by Dolce &amp; Gabbana 24 ml Eau De Toilette Spray for Women">
 <picture>
-<source srcset="{{ $product->image->path??$product->product->image->path }}" type="image/webp">
-<img src="{{ $product->image->path??$product->product->image->path }}" alt="" height="218" width="218">
+<source srcset="{{ asset($product->image->path??$product->product->image->path??'') }}" type="image/webp">
+<img src="{{ asset($product->image->path??$product->product->image->path??'') }}" alt="" height="218" width="218">
 </picture>
 </a>
 </div>
@@ -606,17 +655,17 @@ $condition1 = new \Darryldecode\Cart\CartCondition(array(
 @endphp --}}
 <div class="subtotal-section">
 <div class="c-6-of-12">Subtotal</div>
-<div class="c-6-of-12"><bdo dir="ltr">Rs {{ \Cart::getSubTotal() }}</bdo></div>
+<div class="c-6-of-12"><bdo dir="ltr">Rs {{ number_format(\Cart::getSubTotal()) }}</bdo></div>
 </div>
-{{-- <div class="shipping-section">
+<div class="shipping-section">
 <div class="c-6-of-12">Shipping</div>
-<div class="c-6-of-12"><bdo dir="ltr">ARS $&nbsp;48,427.82</bdo></div>
-</div> --}}
+<div class="c-6-of-12"><bdo dir="ltr">Dpends upon your city</bdo></div>
+</div>
 <div class="line"></div>
 <div class="total-section">
 <div class="c-6-of-12">
 Total </div>
-<div class="c-6-of-12"><bdo dir="ltr">Rs {{ \Cart::getTotal() }}</bdo></div>
+<div class="c-6-of-12"><bdo dir="ltr">Rs {{ number_format(\Cart::getTotal()) }}</bdo></div>
 <div class="c-12-of-12 place-order-wrapper">
 <button type="submit" class="btn-type-2 place-order r">Place
 Order</button>
@@ -705,13 +754,13 @@ Terms &amp; Conditions
 </div>
 <div class="shipping-section">
 <div class="c-6-of-12">Shipping</div>
-<div class="c-6-of-12"><bdo dir="ltr">Rs 500</bdo></div>
+<div class="c-6-of-12"><bdo dir="ltr">Depends upon your city</bdo></div>
 </div>
 <div class="line"></div>
 <div class="total-section">
 <div class="c-6-of-12">
 Total </div>
-<div class="c-6-of-12"><bdo dir="ltr">Rs {{ \Cart::getTotal()+500 }}</bdo></div>
+<div class="c-6-of-12"><bdo dir="ltr">Rs {{ \Cart::getTotal() }}</bdo></div>
 <div class="c-12-of-12 place-order-wrapper">
 <button type="submit" class="btn-type-2 place-order r">Place
 Order</button>
@@ -1216,109 +1265,26 @@ Download the Klarna app. Get access to exclusive deals, price drops, and manage 
 </section>
 </div>
 @push('child-scripts')
+
 <script type="text/javascript">
 
-$(document).on('change','.link-3',function(){
 
-var check= 0;
+$(document).on('click','.place-order', function(){
 
-var filteredValues = "{{ url('search?') }}";
+    swal.fire({
+              title: "Your Order is being processed",
+              text: "Please wait",
+              showConfirmButton: false,
+              allowOutsideClick: false,
+              timer: 2000,
+            });
 
-// alert(filteredValues);
+    // $(this).find('input[type=submit]').prop('disabled', true);
 
-if($('input[name="GenderFilter[]"]:checked').serialize()){
-
-// check=+1;
-
-filteredValues+= $('input[name="GenderFilter[]"]:checked').serialize();
-
-
-}
-
-if($('input[name="BrandFilter[]"]:checked').serialize()){
-
-filteredValues+='&';
-filteredValues+= $('input[name="BrandFilter[]"]:checked').serialize();
-
-}
-
-if($('input[name="TypeFilter[]"]:checked').serialize()){
-
-filteredValues+='&';
-filteredValues+= $('input[name="TypeFilter[]"]:checked').serialize();   
-}
-if($('input[name="DepartmentFilter[]"]:checked').serialize()){
-
-filteredValues+='&';
-filteredValues+= $('input[name="DepartmentFilter[]"]:checked').serialize();
-
-}
-
-if($('input[name="ScentFilter[]"]:checked').serialize()){
-
-filteredValues+='&';
-filteredValues+= $('input[name="ScentFilter[]"]:checked').serialize();
-
-}
-
-if($('input[name="PriceFilter[]"]:checked').serialize()){
-
-filteredValues+='&';
-filteredValues+= $('input[name="PriceFilter[]"]:checked').serialize();
-
-}
-
-if($('#orderby').find(':selected').val()){
-
-filteredValues+='&';
-filteredValues+= 'orderby='+$('#orderby').find(':selected').val();
-
-
-}
-
-if($('input[name="InStockFilter"]:checked').serialize()){
-
-filteredValues+='&';
-filteredValues+= $('input[name="InStockFilter"]:checked').serialize();
-
-
-}
-
-
-$.ajax({
-
-type: "get",
-
-url:filteredValues,
-beforeSend:function(){
-
-$('.search-loader').append('<img class="lazy-img" src="https://i.pinimg.com/originals/d7/7b/ce/d77bce75b53ed81f656be3f4249b372b.gif"/>')
-
-},
-success: function(response){
-
-// console.log(response.view);
-
-if(response.view){
-
-$(".put-content-here").html(response.view);
-
-}else{
-
-$(".put-content-here").html('No product found');  
-}
-
-
-}
-
+           
 });
 
 
-if (window.history != 'undefined' && window.history.pushState != 'undefined') {
-window.history.pushState({ path: filteredValues }, '', filteredValues);
-}
-
-});
 
 
 

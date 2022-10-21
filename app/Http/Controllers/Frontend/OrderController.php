@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\ShippingCharge;
 use Illuminate\Support\Str;
 use Session;
 use Illuminate\Support\Facades\Hash;
@@ -119,7 +120,6 @@ class OrderController extends Controller
           'first_name' => 'required|string',
           'last_name' => 'required|string',
           'address_1' => 'required|string',
-          'address_2' => 'required|string',
           'house_no' => 'required|string',
           'city' => 'required',
           'phone' => 'required',
@@ -135,7 +135,6 @@ class OrderController extends Controller
           'd_first_name' => 'required|string',
           'd_last_name' => 'required|string',
           'd_address_1' => 'required|string',
-          'd_address_2' => 'required|string',
           'd_house_no' => 'required|string',
           'd_city' => 'required',
           'd_phone' => 'required',
@@ -188,7 +187,10 @@ class OrderController extends Controller
         try{
 
           $user = User::where('ip_address',request()->ip())->first();
+          $shipping = ShippingCharge::where('city',$city)->first();
+          $shipping_charges = $shipping->charges??300;
 
+          // dd($shipping);
             if(!$user){
 
               $new_user = User::create([
@@ -229,7 +231,7 @@ class OrderController extends Controller
               'order_type' => $order_type,
               'payment_method' => $payment_method, 
               'message' => $message,
-              'total_amount' => ($request->order_type)? \Cart::getTotal() + 500:\Cart::getTotal()
+              'total_amount' => ($request->order_type)? \Cart::getTotal() + 500 + $shipping_charges:\Cart::getTotal()+$shipping_charges
    
              ]);
 
@@ -243,12 +245,22 @@ class OrderController extends Controller
                   'price' => $value->price 
 
                 ]);
+                
+                if($orderdetail->variable_product->quantity){
+                 $new_qty = $orderdetail->variable_product->quantity - $value->quantity;
+                  $orderdetail->variable_product->update([
+                    'quantity' => $new_qty 
+                  ]);
+                }
 
               }
              
              }
+             
+             
             //  \Session::set('order_id',$order->id);
              \Session::put('order_id',$order->id);
+             \Session::put('shipping_charges',$shipping_charges);
 
              \Cart::clear();
 

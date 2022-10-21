@@ -9,7 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Type;
-use App\Models\review;
+use App\Models\Review;
 use App\Models\ScentNote;
 use App\Models\ProductVariation;
 use App\Models\Order;

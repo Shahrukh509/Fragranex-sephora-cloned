@@ -46,7 +46,7 @@
     @if(isset($category->image))
     <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
 
-      <img class="manImg" src="{{ $category->image }}" width="200" height="200"></img>
+      <img class="manImg" src="{{ asset($category->image )}}" width="200" height="200"></img>
       
       </span><br>
     @endif
@@ -109,7 +109,7 @@ $(document).on('submit','#edit-category-form',function(e){
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 12000,
+      timer: 2000,
       timerProgressBar: true,
       });
 

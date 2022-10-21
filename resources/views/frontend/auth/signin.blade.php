@@ -24,12 +24,12 @@
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email" required>
                             <span class="text-danger error-text email_error"></span>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
                             <span class="text-danger error-text password_error"></span>
                         </div>
                         {{-- <div class="form-check">
@@ -117,9 +117,6 @@ $.ajax({
 
   },
   success:function(response){
-
-    alert('hi');
-    return false;
 
   if(response.status == true){
     const Toast = Swal.mixin({

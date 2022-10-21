@@ -19,20 +19,20 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#">
-                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-facebook.svg" alt="Facebook" aria-label="Facebook" width="20" height="20" />
+                        <a href="">
+                           <i class="fa fa-facebook-square" aria-hidden="true"></i>
                         </a>
                         <a href="#">
-                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-twitter.svg" alt="Twitter" aria-label="Twitter" width="20" height="20" />
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
                         </a>
                         <a href="#">
-                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-youtube.svg" alt="YouTube" aria-label="YouTube" width="20" height="20" />
+                           <i class="fa fa-youtube" aria-hidden="true"></i>
                         </a>
                         <a href="#">
-                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-pinterest.svg" alt="Pinterest" aria-label="Pinterest" width="20" height="20" />
+                            <i class="fa fa-pinterest" aria-hidden="true"></i>
                         </a>
                         <a href="#">
-                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-instagram.svg?v=2" alt="Instagram" aria-label="Instagram" width="20" height="20" />
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -59,11 +59,7 @@
                                 </ul>
                             </div>
                             <span></span>
-                            <div class="c4-12-of-12 affiliates mcaffe-container mq4show">
-                                <a target="_blank" href="#">
-                                    <img src="img/fragrancex_logo.svg" alt="Mcafee Secured" class="img-fluid mt-5">
-                                </a>
-                            </div>
+                            
                         </div>
                         <div class="footer-nav-links c-12-of-12 c4-6-of-12 pop">
                             <div class="serif">More Ways To Shop</div>
@@ -151,22 +147,22 @@
                                         </div>
                                     </div>
                                     <div class="social-links">
-                                        <a href="https://www.facebook.com/perfume/">
-                                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-facebook.svg" alt="Facebook" aria-label="Facebook" width="20" height="20" />
-                                        </a>
-                                        <a href="https://twitter.com/fragrancex">
-                                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-twitter.svg" alt="Twitter" aria-label="Twitter" width="20" height="20" />
-                                        </a>
-                                        <a href="https://www.youtube.com/user/fragrancexcom/">
-                                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-youtube.svg" alt="YouTube" aria-label="YouTube" width="20" height="20" />
-                                        </a>
-                                        <a href="https://www.pinterest.com/fragrancex/">
-                                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-pinterest.svg" alt="Pinterest" aria-label="Pinterest" width="20" height="20" />
-                                        </a>
-                                        <a href="https://www.instagram.com/fragrancex/">
-                                            <img class="lazy-img" src="img/search-loading.gif" data-src="https://img.fragrancex.com/images/assets/social/social-instagram.svg?v=2" alt="Instagram" aria-label="Instagram" width="20" height="20" />
-                                        </a>
-                                    </div>
+                        <a href="">
+                           <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="#">
+                           <i class="fa fa-youtube" aria-hidden="true"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-pinterest" aria-hidden="true"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
                                 </div>
                             </div>
                         </div>
@@ -194,11 +190,11 @@
         </div>
         <div class="copy-right">
             <div class="h6 content c4-6-of-12">
-                <p>Copyright &#xA9; 2022 FragranceX.com.</p>
+                <p>Copyright &#xA9; 2022 Shahrukh</p>
                 <p>All Rights Reserved.</p>
             </div>
             <div class="h6 last-updated c4-6-of-12">
-                <p>Last Updated August 31, 2022</p>
+                <p>Up to date </p>
             </div>
         </div>
     </footer>

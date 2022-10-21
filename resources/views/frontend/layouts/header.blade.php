@@ -28,46 +28,46 @@
                                 <div class="r">
                                     <ul>
                                         <li>
-                                            <a class="link-6" href="/products/_cid_perfume__category.html" aria-label="Shop women's perfume">Perfume</a>
+                                            <a class="link-6" href="{{ route('front.overview',['type','perfume']) }}" aria-label="Shop women's perfume">Perfume</a>
                                         </li>
                                         <li>
-                                            <a class="link-6" href="/products/_cid_cologne__category.html" aria-label="Shop men's cologne">Cologne</a>
+                                            <a class="link-6" href="{{ route('front.overview',['type','cologne']) }}" aria-label="Shop men's cologne">Cologne</a>
                                         </li>
                                         <li>
-                                            <a class="link-6" href="/products/allbrands.html" aria-label="See all brands">All Brands</a>
+                                            <a class="link-6" href="{{ route('front.all.brands') }}" aria-label="See all brands">All Brands</a>
                                         </li>
                                         <li>
-                                            <a class="link-6" href="/products/top_selling_perfumes.html" aria-label="Shop Best Sellers">Best Sellers</a>
+                                            <a class="link-6" href="{{ route('front.overview',['department','best-seller']) }}" aria-label="Shop Best Sellers">Best Sellers</a>
                                         </li>
                                         <li class="mq0none">
-                                            <a class="link-6" href="/products/new_arrival_perfumes.html" aria-label="Shop New Arrivals">New Arrivals</a>
+                                            <a class="link-6" href="{{ route('front.overview',['department','new-arrival']) }}" aria-label="Shop New Arrivals">New Arrivals</a>
                                         </li>
                                         <li class="mq0none">
-                                            <a class="link-6" href="/products/celebrity_scents.html" aria-label="Shop Celebrity Scents">Celebrity Scents</a>
+                                            <a class="link-6" href="{{ route('front.overview',['department','celebrity-scents'])  }}" aria-label="Shop Celebrity Scents">Celebrity Scents</a>
                                         </li>
                                         <li class="mq0none">
-                                            <a class="link-6" href="/products/perfume_testers.html" aria-label="Shop Testers">Testers</a>
+                                            <a class="link-6" href="{{ route('front.overview',['sets','Tester']) }}" aria-label="Shop Testers">Testers</a>
                                         </li>
                                         <li class="mq0none">
-                                            <a class="link-6" href="/products/travel_size_mini.html" aria-label="Shop Travel Mini&#39;s">Travel Mini&#39;s</a>
+                                            <a class="link-6" href="{{ route('front.overview',['sets','Travel Minis']) }}" aria-label="Shop Travel Mini&#39;s">Travel Mini&#39;s</a>
                                         </li>
                                         <li class="mq0none">
-                                            <a class="link-6" href="/products/fragrance_samples.html" aria-label="Shop Samples">Samples</a>
+                                            <a class="link-6" href="{{ route('front.overview',['sets','Samples']) }}" aria-label="Shop Samples">Samples</a>
                                         </li>
                                         <li class="mq0none">
-                                            <a class="link-6" href="/products/giftsets.html" aria-label="Shop Gift Sets">Gift Sets</a>
+                                            <a class="link-6" href="{{ route('front.overview',['sets','Gift Sets']) }}" aria-label="Shop Gift Sets">Gift Sets</a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="r">
                                     <ul>
                                         <li>
-                                            <a class="link-6" href="/customeraccount/customer_center.html" aria-label="My account page" rel="nofollow">
+                                            <a class="link-6" href="{{ route('front.contact.us') }}" aria-label="My account page" rel="nofollow">
                                                 My Account
                                             </a>
                                         </li>
                                         <li>
-                                            <a class="link-6" href="/customerservice/customerservice.html" aria-label="Help">Help</a>
+                                            <a class="link-6" href="{{ route('front.contact.us') }}" aria-label="Help">Help</a>
                                         </li>
                                         {{-- <li>
                                             <a class="link-6" href="/coupons.html" aria-label="Join Coupon List">Join
@@ -159,25 +159,11 @@
                         <img src="{{ asset('public/frontend/img/fragrancex_logo.svg') }}" title="FragranceX" alt="FragranceX Perfume &amp;amp; Cologne" width="130" height="35" />
                     </a>
                 </div>
-                <div class="search-dropdown pop  c4-6-of-12 ">
-                    <input class="pop-trigger" type="checkbox" aria-label="Display search toolbar" />
-                    <div class="search ">
-                        <form method="get" action="/widgets/topmenu/search.html" class="frm-srch">
-                            <input type="text" id="searchBox" class="txt-input-in-sync client-search-text" name="k" placeholder="Search" value="" autocomplete="on" autocapitalize="on" spellcheck="true" aria-label="Search" />
-                            <button type="submit" class="search-icon-wrapper">
-                                <img class="square"
-                                    src="{{ asset('public/frontend/img/search-square-icon.svg') }}"
-                                    title="search" alt="search" width="35" height="35" />
-                                <img class="default" src="{{ asset('public/frontend/img/search.svg') }}"
-                                    title="search" alt="search" width="24" height="24" />
-                            </button>
-                            <span class="delete-keyword mq1dnonem" style="display:none; padding:  0 5px;" aria-label="Clear Search Term">
-                                <!-- <svg width="12" height="12" role="img">
-                                    <use xlink:href="/Images/general-icon.svg?v=1#popup-close"></use>
-                                </svg> -->
-                            </span>
-                        </form>
-                    </div>
+                <div class="c4-6-of-12">
+                    <form class="example" action="{{ route('front.search.query') }}" method="get">
+                        <input type="text" placeholder="Search.." name="search" value="{{ request()->input('search') }}" autocomplete="on">
+                        <button type="submit"><i class="fa fa-search text-dark"></i></button>
+                      </form>
                 </div>
                 <div class="express c4-3-of-12">
                     <div class="r">
@@ -311,7 +297,7 @@
                                 </div>
                                 <div class="c-12-of-12 std-side-padding">
                                     <span>
-                                        <a class="link-1" href="/products/allbrands.html" aria-label="View All">View All
+                                        <a class="link-1" href="{{ route('front.all.brands')}}" aria-label="View All">View All
                                             Brands</a>
                                     </span>
                                 </div>
@@ -319,10 +305,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="free-shipping-over">
+                {{-- <div class="free-shipping-over">
                     <a class="link-6" href="/customerservice/customerservice.html">
                         Free Shipping </a>
-                </div>
+                </div> --}}
             </div>
         </nav>
         <div class="sticky std-side-padding" id="sticky-nav">
@@ -339,7 +325,7 @@
                             <link itemprop="url" href="https://www.a.com/" />
                             <form itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction" method="get" action="/widgets/topmenu/search.html" class="frm-srch">
                                 <meta itemprop="target" content="https://www.a.com/search/search_results?sText={k}" />
-                                <input itemprop="query-input" type="text" id="searchBoxFixedNav" class="txt-input-in-sync client-search-text" name="k" placeholder="Search" value="" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search" />
+                                <input  type="text"  class="txt-input-in-sync client-search-text" name="k" placeholder="Search" value="" autocomplete="on" autocapitalize="on" spellcheck="true" aria-label="Search" />
                                 <button type="submit" class="search-icon-wrapper">
                                     <img class="square"
                                         src="{{ asset('public/frontend/img/search-square-icon.svg') }}"

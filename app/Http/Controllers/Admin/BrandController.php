@@ -69,7 +69,7 @@ class BrandController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/brand'), $filename);
-            $path = url('/public/admin/images/brand/').'/'.$filename;
+            $path = '/public/admin/images/brand/'.$filename;
 
         }
 
@@ -140,7 +140,7 @@ class BrandController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/brand'), $filename);
-            $path = url('/public/admin/images/brand/').'/'.$filename;
+            $path = '/public/admin/images/brand/'.$filename;
 
         }
 

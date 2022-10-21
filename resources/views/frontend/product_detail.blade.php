@@ -73,8 +73,8 @@
                             <div class="c4-4-of-12 product-video pi">
                                 <div class="product-img-container product-hero">
                                     <picture>
-                                        <source srcset="{{ $product->image->path??'' }}" type="image/webp">
-                                        <img itemprop="image" width="295" height="295" src="{{ $product->image->path??'' }}" alt="{{ $product->name??'' }}">
+                                        <source srcset="{{ asset($product->image->path??'') }}" type="image/webp">
+                                        <img itemprop="image" width="295" height="295" src="{{ asset($product->image->path??'') }}" alt="{{ $product->name??'' }}">
                                     </picture>
                                 </div>
                                 <a class="play-review mq2show-block" href="#watch-review">
@@ -118,8 +118,8 @@
                                     <div class="product media" id="listing-69036">
                                         <div class="product-listing-img c-5-of-12 c2-3-of-12 pop">
                                             <picture>
-                                                <source srcset="{{ $product->image->path??'' }}" type="image/webp">
-                                                <img alt="{{ $product->name??'' }}" height="250" width="250" src="{{ $product->image->path??'' }}">
+                                                <source srcset="{{ asset($product->image->path??'') }}" type="image/webp">
+                                                <img alt="{{ $product->name??'' }}" height="250" width="250" src="{{ asset($product->image->path??'') }}">
                                             </picture>
                                             <input type="radio" name="zoom-product" class="pop-trigger" aria-label="Click to zoom">
                                             <div class="pop-content">

@@ -68,7 +68,7 @@ class DepartmentController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/department'), $filename);
-            $path = url('/public/admin/images/department/').'/'.$filename;
+            $path = '/public/admin/images/department/'.$filename;
 
         }
 
@@ -138,7 +138,7 @@ class DepartmentController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/department'), $filename);
-            $path = url('/public/admin/images/department/').'/'.$filename;
+            $path = '/public/admin/images/department/'.$filename;
 
         }
 

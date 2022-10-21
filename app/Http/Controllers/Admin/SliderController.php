@@ -72,7 +72,7 @@ class SliderController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/slider'), $filename);
-            $path = url('/public/admin/images/slider/').'/'.$filename;
+            $path = '/public/admin/images/slider/'.$filename;
 
         }
 
@@ -151,7 +151,7 @@ class SliderController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/slider'), $filename);
-            $path = url('/public/admin/images/slider/').'/'.$filename;
+            $path = '/public/admin/images/slider/'.$filename;
 
         }
 

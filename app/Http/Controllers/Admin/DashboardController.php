@@ -36,6 +36,7 @@ class DashboardController extends Controller
          */
         public function index()
         {
+            
 
             $data['today_amount'] = Order::whereDate('created_at',Carbon::today())->sum('total_amount');
             $data['today_users'] = User::whereDate('created_at',Carbon::today())->count();

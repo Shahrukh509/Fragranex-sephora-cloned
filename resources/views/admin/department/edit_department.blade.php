@@ -33,7 +33,7 @@
     @if(isset($department->image))
     <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
 
-      <img class="manImg" src="{{ $department->image }}" width="200" height="200"></img>
+      <img class="manImg" src="{{ asset($department->image) }}" width="200" height="200"></img>
       
       </span><br>
     @endif

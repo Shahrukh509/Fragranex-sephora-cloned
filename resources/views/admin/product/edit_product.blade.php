@@ -24,24 +24,26 @@
   </div>
   <div class="form-control">
     <label for="fname">Product Name</label>
-    <input type="text" id="name" name="name" value="{{ $product->name??'' }}">
+    <input type="text" id="name" name="name" value="{{ $product->name??'' }}" required>
     <span class="text-danger error-text name_error"></span>
   </div>
   <div class="form-control">
     <label for="fname">Upload Product Image</label><br>
     @if(isset($product->image))
      @foreach($product->images->where('product_variation_id','') as $prod_image)
+     <a  class="delete_image" id ="{{ $prod_image->id }}"style="position: absolute;" href="{{ route('admin.delete.image') }}" ><i class="fa fa-window-close" aria-hidden="true"></i></a>
     <span class="images" style="padding-right:3px; padding-top: 3px; display:inline-block;">
 
-      <img class="manImg" src="{{ $prod_image->path }}" width="200" height="200"></img>
+      <img class="manImg" src="{{ asset($prod_image->path) }}" width="200" height="200"></img>
       
       </span><br>
-    <div class="clone-image">
-    <input class="image-file" type="file" id="image" name="image[]" accept="image/*" value="{{ $prod_image->path??'' }}">
-  </div>
+   
   <br>
     @endforeach
     @endif
+     <div class="clone-image">
+    <input class="image-file" type="file" id="image" name="image[]" accept="image/*">
+  </div>
 
     <span class="text-danger error-text image_error"></span>
   </div>
@@ -128,8 +130,8 @@
 
   <div class="form-control">
     <label for="fname">Product Minimum Price Rs</label>
-    <input type="number" id="min_price" name="min_price" value="{{ $product->min_price??'' }}"><br>
-    <span class="text-danger error-text min_price_error"></span>
+    <input type="number" id="min_price" name="min_price" value="{{ $product->min_price??'' }}" required><br>
+    <span class="text-danger error-text min_price_error" required></span>
   </div>
   <div class="form-control">
     <label for="fname">Product Maximum Price Rs</label>
@@ -198,11 +200,17 @@
   <div class="form-control">
     <label for="fname">Upload Product Variation Image</label><br>
 
-    <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
+    @if(isset($vary->image))
 
-      <img class="manImg" src="{{ $vary->image->path??'' }}" width="200" height="200"></img>
+    <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
+      <a  class="delete_image" id ="{{ $vary->image->id }}"style="position: absolute;" href="{{ route('admin.delete.image') }}" ><i class="fa fa-window-close" aria-hidden="true"></i></a>
+
+      <img class="manImg" src="{{ asset($vary->image->path??'' )}}" width="200" height="200"></img>
       
-      </span><br>
+      </span>
+      @endif
+      <br>
+      <br>
 
     <div class="clone-image-variation">
       
@@ -219,7 +227,7 @@
 
   <div class="form-control">
     <label for="fname">Variation Size</label>
-    <input type="text"  name="variation_size[]" value="{{ $vary->size??'' }}">
+    <input type="text"  name="variation_size[]" value="{{ $vary->size??'' }}" required>
     <span class="text-danger error-text variation_size_error"></span>
   </div>
 
@@ -235,7 +243,7 @@
   </div>
   <div class="form-control">
     <label for="fname">Variation Price</label>
-    <input type="number" name="variation_price[]" value="{{ $vary->price??'' }}"><br>
+    <input type="number" name="variation_price[]" value="{{ $vary->price??'' }}" required><br>
     <span class="text-danger error-text variation_price_error"></span>
   </div>
   <div class="form-control">
@@ -298,9 +306,25 @@
   $(document).on('click','.add-more',function(){
  
     var clone =  $(".clone-to-be").first().clone().appendTo('.add-here').find("input").val("").end();
-    $('.vary_num').text('New ');
+    clone.find('.vary_num').text('New');
 
     clone.find("input[name='data_status']").val("new");
+    clone.find("input[name='variation_image[]']").attr('name', 'new_variation_image[]');
+    clone.find("input[name='variation_size[]']").attr('name', 'new_variation_size[]');
+    clone.find("input[name='variation_color[]']").attr('name', 'new_variation_color[]');
+    clone.find("input[name='variation_quantity[]']").attr('name', 'new_variation_quantity[]');
+    clone.find("input[name='variation_price[]']").attr('name', 'new_variation_price[]');
+    clone.find("input[name='variation_special_price[]']").attr('name', 'new_variation_special_price[]');
+    clone.find("input[name='variation_stock[]']").attr('name', 'new_variation_stock[]');
+    clone.find("input[name='variation_stock[]']").attr('name', 'new_variation_stock[]');
+    clone.find("input[name='variation_status[]']").attr('name', 'new_variation_status[]');
+    clone.find("input[name='variation_note[]']").attr('name', 'new_variation_note[]');
+    clone.find("select[name='variation_type[]']").attr('name', 'new_variation_type[]');
+    clone.find(".manImg").hide();
+   
+    
+    // clone.find("select[name='variation_type[]']").val('');
+    
     // $(this).find('[name="variation_type[]"] option:selected').removeAttr('selected');
 
   });
@@ -378,6 +402,7 @@ $(document).on('submit','#edit-product-form',function(e){
        $.each(response.error,function(prefix,val){
 
         $('span.'+prefix+'_error').text('*'+val);
+        $('span.'+prefix+'_error').focus();
           
 
        });
@@ -434,7 +459,7 @@ if(x){
 
       Toast.fire({
       icon: 'success',
-      title: 'Product has been deleted!'
+      title: 'Product variation has been deleted!'
       });
 
       location.reload();
@@ -465,5 +490,76 @@ if(x){
 }
 });
 
+
+// delete image
+
+
+$(document).on('click','.delete_image',function(e){
+
+e.preventDefault();
+var x=confirm( "Are you sure you want to delete this image?");
+var url = $(this).attr('href');
+var id = $(this).attr('id');
+if(x){
+
+    $.ajax({
+
+      url: url,
+      data: {id:id },
+      beforeSend:function(){
+        Swal.fire({
+                title: "Your image is being deleted",
+                text: "Please wait",
+                imageUrl: "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/eb7e7769321565.5ba1db95aab9f.gif",
+                showConfirmButton: false,
+                allowOutsideClick: false
+              });
+
+        $(document).find('span.error-text').text("");
+
+      },
+      success:function(response){
+
+      if(response.status == true){
+        const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      });
+
+      Toast.fire({
+      icon: 'success',
+      title: 'Image has been deleted!'
+      });
+
+      location.reload();
+  }
+      if(response.status == false){
+
+        
+        const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      });
+
+      Toast.fire({
+      icon: 'error',
+      title: 'Unable to delete image!'
+      });
+
+    }
+
+
+    }
+
+  });
+
+}
+});
 </script>
 @endpush

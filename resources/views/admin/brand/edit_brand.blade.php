@@ -33,7 +33,7 @@
     @if(isset($brand->image))
     <span style="padding-right:3px; padding-top: 3px; display:inline-block;">
 
-      <img class="manImg" src="{{ $brand->image }}" width="200" height="200"></img>
+      <img class="manImg" src="{{ asset($brand->image) }}" width="200" height="200"></img>
       
       </span><br>
     @endif
@@ -101,7 +101,7 @@ $(document).on('submit','#edit-brand-form',function(e){
       toast: true,
       position: 'top-end',
       showConfirmButton: false,
-      timer: 12000,
+      timer: 1000,
       timerProgressBar: true,
       });
 

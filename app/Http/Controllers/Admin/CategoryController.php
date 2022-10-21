@@ -72,7 +72,7 @@ class CategoryController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/category'), $filename);
-            $path = url('/public/admin/images/category/').'/'.$filename;
+            $path = '/public/admin/images/category/'.$filename;
 
         }
 
@@ -147,7 +147,7 @@ class CategoryController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/category'), $filename);
-            $path = url('/public/admin/images/category/').'/'.$filename;
+            $path = '/public/admin/images/category/'.$filename;
 
         }
 

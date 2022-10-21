@@ -9,6 +9,7 @@ use App\Models\Type;
 use App\Models\Department;
 use App\Models\ScentNote;
 use App\Models\ProductVariation;
+use App\Models\ProductImage;
 use Validator;
 use Illuminate\Http\Request;
 use Str;
@@ -141,7 +142,7 @@ class ProductController extends Controller
                             $filename = $image->getClientOriginalName();
                 
                             $path = $image->move(public_path('admin/images/product'), $filename);
-                            $path = url('/public/admin/images/product/').'/'.$filename;
+                            $path = '/public/admin/images/product/'.$filename;
                 
                             // $product->image()->path = $path;
                             $product->image()->create([
@@ -176,7 +177,7 @@ class ProductController extends Controller
                                 $filename = $request->file('variation_image')[$key]->getClientOriginalName();
                 
                             $path =  $request->file('variation_image')[$key]->move(public_path('admin/images/product_variation'), $filename);
-                            $path = url('/public/admin/images/product_variation/').'/'.$filename;
+                            $path = '/public/admin/images/product_variation/'.$filename;
             
                             $vary->images()->create([
                                 'product_id' => $product->id, 
@@ -443,6 +444,18 @@ class ProductController extends Controller
     public function updateProduct(Request $request){
             
         // dd($request->data_status);
+        
+         $product = Product::where('id',$request->id)->first();
+               if($product->name !== $request->name){
+
+
+                $validate = Validator::make($request->all(),[
+            
+                    'name' => 'required|unique:products',
+                ]);
+                
+
+               }
                 $validate = Validator::make($request->all(),[
             
                     'name' => 'required',
@@ -470,9 +483,6 @@ class ProductController extends Controller
             
                 }
             
-                else{
-            
-                    $product = Product::where('id',$request->id)->first();
             
                     $product->update([
             
@@ -498,14 +508,14 @@ class ProductController extends Controller
                     ]);
                     
             
-                    if($request->hasFile('image')){
+                    if($request->file('image')){
                 
                             foreach($request->file('image') as $image){
                                 
                                 $filename = $image->getClientOriginalName();
                     
                                 $path = $image->move(public_path('admin/images/product'), $filename);
-                                $path = url('/public/admin/images/product/').'/'.$filename;
+                                $path = '/public/admin/images/product/'.$filename;
                     
                                 // $product->image()->path = $path;
                                 $product->image()->updateOrCreate([
@@ -524,7 +534,7 @@ class ProductController extends Controller
                     
                         
                         }
-                    }
+                    
 
 
                     if($request->data_status == 'old'){
@@ -540,31 +550,59 @@ class ProductController extends Controller
                                 $product->all_variable_products[$key]->type_id = $variation_type;
 
                                 $product->all_variable_products[$key]->save();
+
+                                $vary = $product->all_variable_products[$key];
+                                // dd($vary->images());
                                 
         
                                        
                         
-                                        if($request->hasFile('variation_image')){
-                                            $image_count = count($request->file('variation_image'));
-                                            $count = $image_count-1;
-                                        
+                                      
         
-                                            if(!empty($request->file('variation_image')[$count])){
+                                            if(isset($request->file('variation_image')[$key])){
+
+                                                
                                                
-                                                $filename = $request->file('variation_image')[$count]->getClientOriginalName();
+                                                $filename = $request->file('variation_image')[$key]->getClientOriginalName();
                             
-                                                $path =  $request->file('variation_image')[$count]->move(public_path('admin/images/product_variation'), $filename);
-                                                $path = url('/public/admin/images/product_variation/').'/'.$filename;
+                                                $path =  $request->file('variation_image')[$key]->move(public_path('admin/images/product_variation'), $filename);
+                                                $path = '/public/admin/images/product_variation/'.$filename;
+                                                
+                                                if(!empty($vary->images)){
+                                                    
+                                                    $vary->image()->update([
+                                                    'path' => $path
+                                                ]);
+                                                    
+                                                }else{
+                                                    
+                                                     $vary->image()->create([
+                                                    'path' => $path
+                                                ]);
+                                                    
+                                                    
+                                                    
+                                                }
+                                              
             
-                                                $product->all_variable_products[$key]->images[$key]->path = $path;
-                                                $product->all_variable_products[$key]->images[$key]->save();
+                                               $vary->image()->updateOrCreate([
+                                                    
+                                                    'product_id' => $product->id,
+                                                    'product_variation_id' => $vary->id,
+                                                    'path' => $path
+                
+                                                ],[
+                                                    'path' => $path
+                                                ]);
+                                                // dd($data);
+                                                // $product->all_variable_products[$key]->images->save();
         
                                             }
                         
                                         }
                                         
                         
-                                    }
+                                    
                         
                                 }
 
@@ -702,30 +740,37 @@ class ProductController extends Controller
                     }
                     if($request->data_status == 'new'){
 
-                        //  dd('im shahrukh');
-                          
-                        if($request->has('variation_type')){
-            
+                        // dd($request->file('new_variation_image'));
+
                         
-                            foreach($request->variation_type as $key=>$variation_type){
+                          
+                        if($request->has('new_variation_type')){
+            
+                            // dd($request->data_status);
+                            foreach($request->new_variation_type as $key=>$new_variation_type){
         
     
                                         
                                 $new_variation =$product->all_variable_products()->create([
 
-                                    'type_id' => variation_type
+                                    'type_id' => $new_variation_type
                                 ]);
+
+
+                                
                                 
                         
-                                        if($request->hasFile('variation_image')){
+                                        if(isset($request->file('new_variation_image')[$key])){
                                            
                                         
-                                        $filename = $request->file('variation_image')[$key]->getClientOriginalName();
+                                        $filename = $request->file('new_variation_image')[$key]->getClientOriginalName();
                     
-                                        $path =  $request->file('variation_image')[$key]->move(public_path('admin/images/product_variation'), $filename);
-                                        $path = url('/public/admin/images/product_variation/').'/'.$filename;
+                                        $path =  $request->file('new_variation_image')[$key]->move(public_path('admin/images/product_variation'), $filename);
+                                        $path = '/public/admin/images/product_variation/'.$filename;
 
                                         $new_variation->images()->create([
+
+                                            'product_id' => $product->id,
 
                                             'path' => $path
                                         ]);
@@ -740,15 +785,16 @@ class ProductController extends Controller
                                 }
 
 
-                                if($request->has('variation_size')){
+                                if($request->has('new_variation_size')){
                 
-                                    foreach($request->variation_size as $key=>$size){
+                                    foreach($request->new_variation_size as $key=>$size){
         
                                         
         
-                                        $new_variation[$key]->size = $size;
+                                        $new_variation->size = $size;
+                                        // $new_variation->sku = 'SKU-'.$new_variation->id;
     
-                                        $new_variation[$key]->save();
+                                        $new_variation->save();
 
                         
                         
@@ -756,15 +802,15 @@ class ProductController extends Controller
                                 
                                 }
 
-                                if($request->has('variation_color')){
+                                if($request->has('new_variation_color')){
                 
-                                    foreach($request->variation_color as $key=>$color){
+                                    foreach($request->new_variation_color as $key=>$color){
         
                                         
         
-                                        $new_variation[$key]->color = $color;
+                                        $new_variation->color = $color;
     
-                                        $new_variation[$key]->save();
+                                        $new_variation->save();
 
                         
                         
@@ -772,95 +818,15 @@ class ProductController extends Controller
                                 
                                 }
 
-                                if($request->has('variation_quantity')){
+                                if($request->has('new_variation_quantity')){
                 
-                                    foreach($request->variation_quantity as $key=>$quantity){
+                                    foreach($request->new_variation_quantity as $key=>$quantity){
         
                                         
         
-                                        $new_variation[$key]->quantity = $quantity;
+                                        $new_variation->quantity = $quantity;
     
-                                        $new_variation[$key]->save();
-
-
-                        
-                        
-                                    }
-                                
-                                }
-
-                                if($request->has('variation_price')){
-                
-                                    foreach($request->variation_price as $key=>$price){
-        
-                                        
-        
-                                        $new_variation[$key]->price = $price;
-    
-                                        $new_variation[$key]->save();
-
-                        
-                        
-                                    }
-                                
-                                }
-                                if($request->has('variation_special_price')){
-                
-                                    foreach($request->variation_special_price as $key=>$special_price){
-        
-                                        
-        
-                                        $new_variation[$key]->sale_price = $special_price;
-    
-                                        $new_variation[$key]->save();
-
-                        
-                        
-                                    }
-                                
-                                }
-
-                                if($request->has('variation_stock')){
-                
-                                    foreach($request->variation_stock as $key=>$in_stock){
-        
-                                        
-        
-                                        $new_variation[$key]->in_stock = $in_stock;
-    
-                                        $new_variation[$key]->save();
-
-                        
-                        
-                                    }
-                                
-                                }
-
-                                if($request->has('variation_status')){
-                
-                                    foreach($request->variation_status as $key=>$status){
-        
-                                        
-        
-                                        $new_variation[$key]->status = $status;
-    
-                                        $new_variation[$key]->save();
-
-                        
-                        
-                                    }
-                                
-                                }
-
-                                if($request->has('variation_note')){
-                
-                                    foreach($request->variation_note as $key=>$note){
-        
-                                        
-        
-                                        $new_variation[$key]->note = $note;
-    
-                                        $new_variation[$key]->save();
+                                        $new_variation->save();
 
 
                         
@@ -869,6 +835,85 @@ class ProductController extends Controller
                                 
                                 }
 
+                                if($request->has('new_variation_price')){
+                
+                                    foreach($request->new_variation_price as $key=>$price){
+        
+                                        
+        
+                                        $new_variation->price = $price;
+    
+                                        $new_variation->save();
+
+                        
+                        
+                                    }
+                                
+                                }
+                                if($request->has('new_variation_special_price')){
+                
+                                    foreach($request->new_variation_special_price as $key=>$special_price){
+        
+                                        
+        
+                                        $new_variation->sale_price = $special_price;
+    
+                                        $new_variation->save();
+
+                        
+                        
+                                    }
+                                
+                                }
+
+                                if($request->has('new_variation_stock')){
+                
+                                    foreach($request->new_variation_stock as $key=>$in_stock){
+        
+                                        
+        
+                                        $new_variation->in_stock = $in_stock;
+    
+                                        $new_variation->save();
+
+                        
+                        
+                                    }
+                                
+                                }
+
+                                if($request->has('new_variation_status')){
+                
+                                    foreach($request->new_variation_status as $key=>$status){
+        
+                                        
+        
+                                        $new_variation->status = $status;
+    
+                                        $new_variation->save();
+
+                        
+                        
+                                    }
+                                
+                                }
+
+                                if($request->has('new_variation_note')){
+                
+                                    foreach($request->new_variation_note as $key=>$note){
+        
+                                        
+        
+                                        $new_variation->note = $note;
+    
+                                        $new_variation->save();
+
+
+                        
+                        
+                                    }
+                                
+                                }
                     }
 
                     return response()->json([
@@ -888,12 +933,16 @@ class ProductController extends Controller
             if(request()->ajax()){
 
               $data = ProductVariation::where('id',$request->id)->first();
+              
+              if(isset($data)){
 
-              $image = $data->delete_images();
+                $image = $data->delete_images();
+              }
+              
 
               $result =  $data->delete();
 
-              if($image && $result){
+              if($result){
 
                 return response()->json([
 
@@ -931,6 +980,34 @@ class ProductController extends Controller
       
     
             
+        }
+        
+        public function deleteImage(Request $request){
+
+
+                $data = ProductImage::where('id',$request->id)->first();
+                
+  
+                $result =  $data->delete();
+  
+                if($result){
+  
+                  return response()->json([
+  
+                      'status' => true
+                  ]);
+                }else{
+  
+                  return response()->json([
+  
+                      'status' => false
+                  ]);
+  
+                }
+
+
+
+
         }
     
 }

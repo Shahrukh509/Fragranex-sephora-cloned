@@ -16,36 +16,16 @@
                        </div>
                     </div>
                     
-                <div class="slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" style="width: 51px;" tabindex="-1"><div><a data-image="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" data-zoom-image="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" class="slick-slide slick-cloned" data-slick-index="4" aria-hidden="true" tabindex="-1" style="width: 100%; display: inline-block;">
-                            <img class="blur-up ls-is-cached lazyloaded" src="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" alt="">
-                        </a></div></div>
+                    {{-- --}}
                         
-                        <div class="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" style="width: 51px;" tabindex="-1"><div><a data-image="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" data-zoom-image="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" class="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 100%; display: inline-block;">
-                            <img class="blur-up ls-is-cached lazyloaded" src="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" alt="">
-                        </a></div></div>
-                        <div class="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" style="width: 51px;" tabindex="-1"><div><a data-image="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" data-zoom-image="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" class="slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style="width: 100%; display: inline-block;">
-                            <img class="blur-up ls-is-cached lazyloaded" src="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" alt="">
-                        </a></div></div>
-                        <div class="slick-slide" data-slick-index="0" aria-hidden="true" style="width: 51px;" tabindex="-1"><div><a data-image="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" data-zoom-image="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" class="slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 100%; display: inline-block;">
-                            <img class="blur-up ls-is-cached lazyloaded" src="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" alt="">
-                        </a></div></div>
-                        <div class="slick-slide" data-slick-index="1" aria-hidden="true" style="width: 51px;" tabindex="-1"><div><a data-image="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" data-zoom-image="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" class="slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 100%; display: inline-block;">
-                            <img class="blur-up ls-is-cached lazyloaded" src="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" alt="">
-                        </a></div></div><div class="slick-slide" data-slick-index="2" aria-hidden="true" style="width: 51px;" tabindex="-1"><div><a data-image="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" data-zoom-image="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 100%; display: inline-block;">
-                            <img class="blur-up ls-is-cached lazyloaded" src="https://www.sephora.com/productimages/sku/s2249696-main-zoom.jpg?imwidth=465" alt="">
-                        </a></div></div>
-                        <div class="slick-slide" data-slick-index="3" aria-hidden="true" style="width: 51px;" tabindex="-1"><div><a data-image="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" data-zoom-image="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" class="slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 100%; display: inline-block;">
-                            <img class="blur-up ls-is-cached lazyloaded" src="https://www.sephora.com/productimages/product/p449116-av-19-zoom.jpg?imwidth=930" alt="">
-                        </a>
-                    </div>
-                </div>
+                        
                 @php
                 $parent = \App\Models\Product::where('id',$product->product_id)->first();
         
                 @endphp
                 @foreach($parent->all_variable_products as $get_image)
-                   <div class="slick-slide slick-current slick-active" data-slick-index="4" aria-hidden="false" style="width: 51px;"><div><a data-image="{{ $get_image->image->path??'' }}" data-zoom-image="{{ $get_image->image->path??'' }}" class="slick-slide slick-cloned" data-slick-index="0" aria-hidden="true" tabindex="0" style="width: 100%; display: inline-block;">
-                            <img class="blur-up ls-is-cached lazyloaded" src="{{ $get_image->image->path??'' }}" alt="">
+                   <div class="slick-slide slick-current slick-active" data-slick-index="4" aria-hidden="false" style="width: 51px;"><div><a data-image="{{ asset($get_image->image->path??'') }}" data-zoom-image="{{ asset($get_image->image->path??'') }}" class="slick-slide slick-cloned" data-slick-index="0" aria-hidden="true" tabindex="0" style="width: 100%; display: inline-block;">
+                            <img class="blur-up ls-is-cached lazyloaded" src="{{ asset($get_image->image->path??'') }}" alt="">
                         </a>
                     </div>
                     
@@ -57,7 +37,7 @@
                 </div>
                 <div class="zoompro-wrap product-zoom-right pl-20">
                     <div class="zoompro-span">
-                        <img class="blur-up zoompro lazyloaded" data-zoom-image="{{ $product->image->path??"" }}" alt="" src="{{ $product->image->path??"" }}">
+                        <img class="blur-up zoompro lazyloaded" data-zoom-image="{{ asset($product->image->path??"") }}" alt="" src="{{ asset($product->image->path??"") }}">
                     </div>
                     <!-- <div class="product-labels"><span class="lbl on-sale">Sale</span><span class="lbl pr-label1">new</span></div>
                     <div class="product-buttons">
@@ -92,9 +72,15 @@
                 </div>
                 <div class="prInfoRow">
                     <div class="product-stock">@if($product->product->variable_products->in_stock)<span class="instock ">In Stock</span>@else<span class="outstock hide">Unavailable</span>@endif</div>
-                    <div class="product-sku">Item: <span class="variant-sku">#{{ $product->product->variable_products->id??'' }}</span></div>
-                    <div class="product-review"><a class="reviewLink" href="#tab2"><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i><span class="spr-badge-caption">6
-                                reviews</span></a></div>
+                    <div class="product-sku">SKU: <span class="variant-sku">#{{ $product->variable_products->sku??'' }}</span></div>
+                    <div class="product-review">
+                        <a class="reviewLink" href="#tab2">
+                            {!! str_repeat('<i class="fa fa-star" aria-hidden="true" style="color:orange"></i>', (int)$product->product->reviews()->avg('rating')) !!}
+                            {!! str_repeat('<i class="fa fa-star-o" aria-hidden="true"></i>', 5 - (int)$product->product->reviews()->avg('rating')) !!}
+                                    <span class="spr-badge-caption">
+                                reviews</span>
+                            </a>
+                            </div>
                 </div>
                 <p class="product-single__price product-single__price-product-template">
                     <!-- <span class="visually-hidden">Regular price</span>
@@ -134,7 +120,7 @@
                                     
                                     <div class="col-4">
 
-                                        <img src="img/s2249688+sw-42.webp" alt="" class="img-fluid ">
+                                        <img src="{{ asset($pro->image->path??'') }}" alt="" class="img-fluid ">
                                     </div>
                                      
                                     <div class="col-8 d-flex">
@@ -228,10 +214,32 @@
             </div>
             <!-- End Product Action -->
 
-            <p id="freeShipMsg" class="freeShipMsg" data-price="199"><i class="fa fa-truck" aria-hidden="true"></i> GETTING CLOSER! ONLY <b class="freeShip"><span class="money" data-currency-usd="$199.00" data-currency="USD">$199.00</span></b> AWAY FROM <b>FREE SHIPPING!</b></p>
-            <p class="shippingMsg"><i class="fa fa-clock-o" aria-hidden="true"></i> ESTIMATED DELIVERY BETWEEN <b id="fromDate">Wed. May 1</b> and <b id="toDate">Tue. May 7</b>.</p>
+            {{-- <p id="freeShipMsg" class="freeShipMsg" data-price="199"><i class="fa fa-truck" aria-hidden="true"></i> GETTING CLOSER! ONLY <b class="freeShip"><span class="money" data-currency-usd="$199.00" data-currency="USD">$199.00</span></b> AWAY FROM <b>FREE SHIPPING!</b></p>
+            <p class="shippingMsg"><i class="fa fa-clock-o" aria-hidden="true"></i> ESTIMATED DELIVERY BETWEEN <b id="fromDate">Wed. May 1</b> and <b id="toDate">Tue. May 7</b>.</p> --}}
             <!-- <div class="userViewMsg" data-user="20" data-time="11000"><i class="fa fa-users" aria-hidden="true"></i>
                 <strong class="uersView">14</strong> PEOPLE ARE LOOKING FOR THIS PRODUCT</div> -->
         </div>
     </div>
 </div>
+<script>
+
+function qnt_incre() {
+        $(".qtyBtn").on("click", function() {
+            var qtyField = $(this).parent(".qtyField");
+            oldValue = $(qtyField).find(".qty").val();
+            newVal = 1;
+        
+                
+            if ($(this).is(".plus")) {
+                if(parseInt(oldValue) < 10){
+                    newVal = parseInt(oldValue) + 1;
+                }
+                
+            } else if (oldValue > 1) {
+                newVal = parseInt(oldValue) - 1;
+            }
+            $(qtyField).find(".qty").val(newVal);
+        });
+    }
+    qnt_incre();
+</script>

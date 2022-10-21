@@ -16,6 +16,26 @@
         </div>
         <ul class="navbar-nav  justify-content-end">
 
+          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+              <div class="sidenav-toggler-inner">
+                <i class="sidenav-toggler-line"></i>
+                <i class="sidenav-toggler-line"></i>
+                <i class="sidenav-toggler-line"></i>
+              </div>
+
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-sucess optimize" href="#" hreff="{{ url('optimize') }}">
+              <div class="text-danger text-center me-2 d-flex align-items-center justify-content-center">
+                <i class='fas fa-fan' style='font-size:18px;color:green'></i>
+              </div>
+              <span class="nav-link-text ms-1" style='font-size:13px;color:green'>Optimize</span>
+            </a>
+          </li>
+
           <li class="nav-item">
           <a class="nav-link text-danger " href="{{ route('admin.logout') }}">
             <div class="text-danger text-center me-2 d-flex align-items-center justify-content-center">
@@ -24,13 +44,7 @@
             <span class="nav-link-text ms-1">Logout</span>
           </a>
         </li>
-          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
-              <div class="sidenav-toggler-inner">
-                <i class="fa fa-globe" aria-hidden="true"></i>
-              </div>
-            </a>
-          </li>
+          
           <li class="nav-item px-3 d-flex align-items-center">
             <a href="{{ route('front.home') }}" class="nav-link text-body p-0">
               <i class="fa fa-globe" aria-hidden="true"></i> Go to site
@@ -113,3 +127,42 @@
       </div>
     </div>
   </nav>
+  @push('script')
+
+  <script>
+    $(document).on('click','.optimize',function(e){
+      e.preventDefault();
+
+      swal.fire({
+              title: "Optimizing your website",
+              text: "Please wait",
+              showConfirmButton: false,
+              allowOutsideClick: false,
+              timer: 5000,
+            });
+
+      var url = $(this).attr('hreff');
+      $.ajax({
+
+        url:url,
+        success:function(response){
+  
+         if(response.status){
+
+          swal.fire({
+                      icon:"success",
+                      title: "Finished!",
+                      showConfirmButton: false,
+                      timer: 5000
+                    });
+
+         }
+        
+
+
+        }
+      })
+    })
+  </script>
+      
+  @endpush

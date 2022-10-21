@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ShippingChargeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,16 @@ Artisan::call("optimize:clear");
 return 'application has been optimized';
 });
 
+// optimize
+Route::get('optimize', function(){
+
+    Artisan::call("optimize:clear");
+    
+    return response()->json([
+        'status' => true,
+    ]);
+    });
+
      //END OF REFRESHING APPLICATION
 
      // ALL FRONTEND ROUTES
@@ -55,6 +66,9 @@ Route::group(['as'=>'front.'], function(){
 
    Route::get('product-alphabet/{Alphabet?}/{category?}',[HomeController::class,'BrandByAlphabet'])->name('brand.alphabet');
    Route::get('select-size',[HomeController::class,'selectSize'])->name('select.size');
+                            
+                             //  search query
+    Route::get('searchQuery/{search?}',[HomeController::class,'SearchQuery'])->name('search.query');
                       
                          // CART SYSTEM
 
@@ -71,7 +85,7 @@ Route::group(['as'=>'front.'], function(){
     Route::post('order/submitForm',[OrderController::class,'submitForm'])->name('user.signin.submit');
    Route::get('order/cart',[OrderController::class,'ShowCart'])->name('show.cart');
    Route::get('order/checkout',[OrderController::class,'ShowCheckOutDetail'])->name('show.checkout')->middleware('checkUser');
-   Route::get('order/checkout-detail',[OrderController::class,'ShowCheckOutDetail'])->name('show.checkout.detail');
+   Route::get('order/checkout-detail',[OrderController::class,'ShowCheckOutDetail'])->name('show.checkout.detail')->middleware('checkUser');
    Route::post('order/saving/order',[OrderController::class,'saveOder'])->name('save.order');
    Route::get('order/successful',function(){
 
@@ -99,7 +113,7 @@ Route::group(['as'=>'front.'], function(){
 
     // ALL ADMIN PANEL ROUTES
 
-    Route::group(['as'=>'admin.','middleware' => 'auth'], function(){
+    Route::group(['as'=>'admin.','middleware' => 'checkAdmin'], function(){
         Route::get('dashboard', [DashboardController::class,'index'])->name('dashboard');
 
                                     // P r o d u c t   s e c t i o n
@@ -109,6 +123,7 @@ Route::group(['as'=>'front.'], function(){
         Route::get('product/show/update/{id?}',[ProductController::class,'updateProductShow'])->name('show.update.product');
         Route::post('update/product/{id?}',[ProductController::class,'updateProduct'])->name('update.product');
         Route::get('delete/product/{id?}',[ProductController::class,'deleteProduct'])->name('delete.product');
+        Route::get('delete/image/{id?}',[ProductController::class,'deleteImage'])->name('delete.image');
 
                                       // B r a n d   s e c t i o n
          Route::get('brand/show/list',[BrandController::class,'showbrandList'])->name('show.brand.list');
@@ -176,6 +191,14 @@ Route::group(['as'=>'front.'], function(){
              Route::get('slider/show/update/{id?}',[SliderController::class,'updatesliderShow'])->name('show.update.slider');
              Route::post('update/slider/{id?}',[SliderController::class,'updateslider'])->name('update.slider');
              Route::get('delete/slider/{id?}',[SliderController::class,'deleteslider'])->name('delete.slider');
+
+                                    // S h i p p i n g   s e c t i o n
+             Route::get('shipping/show/list',[ShippingChargeController::class,'showshippingList'])->name('show.shipping.list');
+             Route::get('shipping/show/add',[ShippingChargeController::class,'addshippingShow'])->name('show.add.shipping');
+             Route::post('add/shipping',[ShippingChargeController::class,'addshipping'])->name('add.shipping');
+             Route::get('shipping/show/update/{id?}',[ShippingChargeController::class,'updateshippingShow'])->name('show.update.shipping');
+             Route::post('update/shipping/{id?}',[ShippingChargeController::class,'updateshipping'])->name('update.shipping');
+             Route::get('delete/shipping/{id?}',[ShippingChargeController::class,'deleteshipping'])->name('delete.shipping');
 
 
                                          // P r o f i l e   s e c t i o n

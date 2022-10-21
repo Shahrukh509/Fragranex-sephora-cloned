@@ -1,15 +1,15 @@
 @extends('frontend.layouts.master')
 @section('title')
-{{ $category->title ?? 'No Title' }}
+{{ $category->title ?? 'Cart' }}
 @endsection
 @section('meta_title')
-{{ $category->meta_title ?? 'No MetaTitle' }}
+{{ $category->meta_title ?? 'Cart' }}
 @endsection
 @section('meta_description')
-{{ $category->meta_description ?? 'No MetaDescription' }}
+{{ $category->meta_description ?? 'Cart' }}
 @endsection
 @section('meta_keyword')
-{{ $category->meta_keyword ?? 'No MetaKeyword' }}
+{{ $category->meta_keyword ?? 'Cart' }}
 @endsection
 
 
@@ -111,9 +111,9 @@ $brand_slug = $product->product->brand->slug;
         aria-label="">
         <picture>
             <source
-                srcset="{{ $product->image->path??'' }}"
+                srcset="{{ asset($product->image->path??'') }}"
                 type="image/webp">
-            <img src="{{ $product->image->path??'' }}"
+            <img src="{{ asset($product->image->path??'') }}"
                 height="218" width="218">
         </picture>
     </a>
@@ -269,13 +269,13 @@ Proceed to <span class="mq0show">Secure</span> Checkout
 src="https://img.fragrancex.com/images//assets/icons/secure-padlock-icon.svg">
 </a>
 </div>
-<div class="pp-summary-mobile">
+{{-- <div class="pp-summary-mobile">
 <a class="paypal-checkout" href="/orders/cart/paypal.html">
 Check out with
 <img src="https://img.fragrancex.com/images/paypal.svg" alt="Pay by Paypal"
 width="62" height="17">
 </a>
-</div>
+</div> --}}
 <div class="google-pay-wrapper"></div>
 <div class="apple-pay-wrapper">
 <a href="#" class="apple-pay-button-with-text" aria-label="Pay with apple pay">
@@ -301,7 +301,7 @@ var paymodel = {
 "GrandTotal": 16524.96,
 "CurrencySymbol": "ARS $ ",
 "CurrencyAbbreviation": "ARS",
-"ContinueShoppingUrl": "https://www.a.com/products/_cid_perfume-am-lid_l-am-pid_884w__products.html",
+"ContinueShoppingUrl": "{{ route('front.home') }}",
 "ShowTopMessage": false,
 "TopMessage": null,
 "CouponCode": "",
@@ -1027,12 +1027,11 @@ data-src="https://img.fragrancex.com/images/assets/icons/customerservice.svg"
 width="60" height="60" alt=""></div>
 <div>Have a question?</div>
 <div>
-<div>Call us from 7AM - 4PM EST </div>
+<div>Call us from 7AM - 4PM </div>
 <div>Monday - Friday</div>
-<div>In the USA</div>
-<div><a href="tel:18885573738" auto-tracked="true">1-888-557-3738</a></div>
-<div>Outside the USA </div>
-<div><a href="tel:0017184826970" auto-tracked="true">001-718-482-6970</a></div>
+<div>In the Pakistan</div>
+<div><a href="tel:03065111418 auto-tracked="true">0306-5111418</a></div>
+
 </div>
 </div>
 </div>
@@ -1043,7 +1042,7 @@ width="60" height="60" alt=""></div>
 data-ajax-method="get" data-ajax-mode="replace"
 data-ajax-success="initSlider('#AjaxPreviouslyViewed')"
 data-ajax-update="#AjaxPreviouslyViewed" id="PreviousViewedAsyncForm" method="post"></form>
-<section id="AjaxPreviouslyViewed">
+{{-- <section id="AjaxPreviouslyViewed">
 <h3 class="title serif">Recently Viewed</h3>
 <div class="slider">
 <div class="slider-wrapper">
@@ -1206,7 +1205,7 @@ data-ajax-update="#AjaxPreviouslyViewed" id="PreviousViewedAsyncForm" method="po
 </div>
 </div>
 </div>
-</section>
+</section> --}}
 </div>
 </div>
 </div>

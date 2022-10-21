@@ -3,13 +3,13 @@
 Home
 @endsection
 @section('meta_title')
-Home
+The Authentic Perfume Shop
 @endsection
 @section('meta_description')
-This is our perfume shop.......
+Welcome to one of the authentic perfume websites in Pakistan
 @endsection
 @section('meta_keyword')
-Perfume-shop
+Welcome to one of the authentic perfume websites in Pakistan
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@ Perfume-shop
                         @foreach($sliders as $key=>$value)
                         {{--  {{ dd($value) }} --}}
                         <div class="carousel-item {{ ($key===0)? 'active':'' }}">
-                            <img class="d-block w-100 img-fluid" src="{{ $value->image}}" alt="slider{{ $value->position }}">
+                            <img class="d-block w-100 img-fluid" src="{{ asset($value->image)}}" alt="slider{{ $value->position }}">
 
                         </div>
                         @endforeach
@@ -68,10 +68,10 @@ Perfume-shop
                                         <div>
                                             <div class="brand-section">
                                                 <div class="c4-6-of-12">
-                                                    <a href="#" aria-label="{{ $brand->name }}">
+                                                    <a href="{{ route('front.product.show',[$brand->slug]) }}" aria-label="{{ $brand->name }}">
                                                         <picture>
-                                                            <source srcset="img/dolce-gabbana.webp" type="image/webp" />
-                                                            <img src="{{ $brand->image }}" alt="{{ $brand->name }}" width="120" height="120">
+                                                            <source srcset="{{ asset($brand->image) }}" type="image/webp" />
+                                                            <img src="{{ asset($brand->image) }}" alt="{{ $brand->name }}" loading="lazy" width="120" height="120">
                                                         </picture>
                                                     </a>
                                                 </div>
@@ -112,7 +112,7 @@ Perfume-shop
 
                                                           @foreach($best_seller->product as $data)
                                                             <div class="item">
-                                                                <img src="{{ $data->image->path??'' }}" alt="image" />
+                                                                <img src="{{ asset($data->image->path??'') }}" alt="image" / loading="lazy">
                                                                 <div class="desc-section">
                                                                 <a href="{{ route('front.product.show',[$data->brand->slug,$data->slug]) }}">
                                                                 <div class="serif h3">
@@ -168,7 +168,7 @@ Perfume-shop
                                             <a href="">
                                                 <picture class="lazy-img">
                                                     <!-- <source data-srcset="https://img.fragrancex.com/images/products/sku/small/verertsm.webp" type="image/webp" /> -->
-                                                    <img src="{{ $type->image }}" alt="{{ $type->name }}" width="250" height="250">
+                                                    <img src="{{ $type->image }}" alt="{{ $type->name }}" width="250" height="250" loading="lazy">
                                                 </picture>
                                             </a>
                                         </div>
@@ -268,7 +268,7 @@ Perfume-shop
                                             <div>
                                                 <picture class="lazy-img">
                                                     <!-- <source data-srcset="https://img.fragrancex.com/images/assets/product%20images/fx-hard-to-find.webp" type="image/webp" /> -->
-                                                    <img src="{{ $hard_to_find->image??'' }}" height="140" width="140">
+                                                    <img src="{{ $hard_to_find->image??'' }}" height="140" width="140" loading="lazy">
                                                 </picture>
                                             </div>
                                             <div>
@@ -285,7 +285,7 @@ Perfume-shop
                                             <div>
                                                 <picture class="lazy-img">
                                                     <!-- <source data-srcset="https://img.fragrancex.com/images/assets/product%20images/fx-celebrity-scents.webp" type="image/webp" /> -->
-                                                    <img src="{{ $celebrity->image?? '' }}" height="140" width="140">
+                                                    <img src="{{ $celebrity->image?? '' }}" height="140" width="140" loading="lazy">
                                                 </picture>
                                             </div>
                                             <div>
@@ -322,7 +322,7 @@ Perfume-shop
                                                                         <div>
                                                                             <picture class="lazy-img">
                                                                                 <!-- <source data-srcset="https://img.fragrancex.com/images/products/sku/small/80927m.webp" type="image/webp" /> -->
-                                                                                <img src="{{ $new->parent_image->path??'' }}" width="206" height="206" alt="{{ $new->name }}">
+                                                                                <img src="{{ asset($new->image->path??'') }}" width="206" height="206" alt="{{ $new->name }}" loading="lazy">
                                                                             </picture>
                                                                         </div>
                                                                         <div class="desc-section">
@@ -534,7 +534,7 @@ Perfume-shop
                             <div class="c3-6-of-12 c4-3-of-12 section-wrapper">
                                 <div class="section">
                                     <div class="img-block">
-                                        <img src="{{ asset('public/frontend/img/fastfreeshipping.svg') }}" alt="" class="lazy-img" width="60" height="60">
+                                        <img src="{{ asset('public/frontend/img/fastfreeshipping.svg') }}" alt="" loading="lazy" class="lazy-img" width="60" height="60">
                                     </div>
                                     <div class="text-block">
                                         <div>Same Day Free Shipping</div>
@@ -557,7 +557,7 @@ Perfume-shop
                             <div class="c3-6-of-12 c4-3-of-12  section-wrapper">
                                 <div class="section">
                                     <div class="img-block">
-                                        <img src="https://img.fragrancex.com/images/assets/icons/safesecure.svg" alt="" class="lazy-img" width="60" height="60">
+                                        <img src="https://img.fragrancex.com/images/assets/icons/safesecure.svg" alt="" loading="lazy" class="lazy-img" width="60" height="60">
                                     </div>
                                     <div class="text-block">
                                         <div>Safe & Secure Checkout</div>
@@ -581,6 +581,8 @@ Perfume-shop
                 </div>
 
                 <div id="home-content" class="c-12-of-12 std-side-padding">
+
+
                     <div class="limit-width">
                         {{-- <div class="shop-our-links">
                             <a class="link-2" href="#">Shop Our Links &gt;&gt;</a>
@@ -594,15 +596,12 @@ Perfume-shop
                                <a href="#">Read More</a>
                             </span> --}}
                             <div id="home-content-read-more-content">
-                                Our discount fragrance selection consists of more than 9,500 brands of&nbsp;<a href="https://www.a.com/products/_cid_perfume__category.html" target="_blank">perfume</a>,&nbsp;<a href="https://www.a.com/products/_cid_cologne__category.html"
-                                    target="_blank">cologne</a>, body lotion, and aftershave, including many discontinued perfumes and colognes. You'll find popular designer brands like Calvin Klein, Dolce &amp; Gabbana, Versace, Gucci, Elizabeth Arden, and
-                                many more in our inventory at up to 80% off! And when you shop for perfumes and colognes online, you can shop with confidence: We guarantee the authenticity of every product we sell.
-                                <br /><br /> As America's largest fragrance outlet, we take pride in offering a wide selection of the best perfume for women and men at the best prices. Stock up on your signature scent, or try new ones with our selection
-                                of&nbsp;
+                                Our discount fragrance selection consists of more than 9,500 brands of&nbsp;<a href="{{ route('front.overview',['type','perfume']) }}" target="_blank">perfume</a>,&nbsp;
+                                <a href="{{ route('front.overview',['type','cologne']) }}"target="_blank">cologne</a> &nbsp;
                                 <a href="#" target="_blank">sample sizes</a>. Not only do we carry the latest in perfume and cologne and all of your favorite best-sellers, but we also have plenty of hard-to-find and unexpected options that you'll love.
                                 If you had a favorite women's fragrance in the&nbsp;<a href="https://www.si.edu/spotlight/health-hygiene-and-beauty/fragrance" target="_blank">past</a>&nbsp;that you haven't been able to find in any perfume stores near
                                 you, it's likely that you'll be able to rediscover it here! We're also the best perfume shop for people searching for the perfect gift for a loved one. Browse our selection of&nbsp;
-                                <a href="https://www.a.com/products/giftsets.html" target="_blank">gift sets</a>&nbsp;to find affordable perfumes and colognes that they're sure to love!
+                                <a href="#" target="_blank">gift sets</a>&nbsp;to find affordable perfumes and colognes that they're sure to love!
                                 <h2 class="h3">Buy Your Favorite Fragrance and Earn Extra Savings</h2>
                                 Our customers turn to us time and time again when they want premium perfumes and colognes at great prices, and we love to reward that loyalty. Just sign up for our rewards program and you'll be able to earn points with every order, which you can use to
                                 get even deeper discounts on name-brand fragrances. You can also sign up for our coupon list to get our best deals sent right to your email. And to make your shopping experience even better, we've partnered with Klarna
@@ -611,16 +610,16 @@ Perfume-shop
                                 <h2 class="h3">What Are the Top Ten Most Popular Perfumes?</h2>
                                 The most popular perfume for women will change from season to season and even week to week, but some of our most popular perfumes include:
                                 <ul>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_b-am-pid_61100w__products.html" target="_blank">Bright Crystal</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_l-am-pid_884w__products.html" target="_blank">Light Blue</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_e-am-pid_352w__products.html" target="_blank">Eternity</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_j-am-pid_67930w__products.html" target="_blank">Jimmy Choo</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_r-am-pid_1099w__products.html" target="_blank">Red Door</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_p-am-pid_60332w__products.html" target="_blank">Pink Sugar</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_o-am-pid_1002w__products.html" target="_blank">Obsession</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_w-am-pid_1349w__products.html" target="_blank">White Diamonds</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_b-am-pid_1698w__products.html" target="_blank">Burberry Brit</a></li>
-                                    <li><a href="https://www.a.com/products/_cid_perfume-am-lid_a-am-pid_60682w__products.html" target="_blank">Alien</a></li>
+                                    <li><a href="#" target="_blank">Bright Crystal</a></li>
+                                    <li><a href="# target="_blank">Light Blue</a></li>
+                                    <li><a href="# target="_blank">Eternity</a></li>
+                                    <li><a href="#" target="_blank">Jimmy Choo</a></li>
+                                    <li><a href="#" target="_blank">Red Door</a></li>
+                                    <li><a href="#" target="_blank">Pink Sugar</a></li>
+                                    <li><a href="#" target="_blank">Obsession</a></li>
+                                    <li><a href="#" target="_blank">White Diamonds</a></li>
+                                    <li><a href="#" target="_blank">Burberry Brit</a></li>
+                                    <li><a href="#" target="_blank">Alien</a></li>
                                 </ul>
                                 <h2 class="h3">What Is the Best Website to Buy Perfume?</h2>
                                 FragranceX.com is the best place to buy perfume for women as well as discount cologne. You'll find the most popular perfume brands at amazingly low prices here, and we guarantee that every women's&nbsp;<a href="https://www.ogleschool.edu/blog/what-goes-into-a-great-perfume/"
@@ -635,7 +634,7 @@ Perfume-shop
                                 <h2 class="h3">Where Is FragranceX Based?</h2>
                                 We're located in Hauppauge, New York, in the middle of Long Island.
                                 <h2 class="h3">How Do I Contact FragranceX?</h2>
-                                You can&nbsp;<a href="https://www.a.com/customerservice/contact.html" target="_blank">contact</a>&nbsp;our customer service staff by emailing <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4714323737283533070135262035262924221f6924282a">[email&#160;protected]</a>                                or calling us at 1-888-557-3738. If you're outside the United States, you can call us at 001-718-482-6970.
+                                You can&nbsp;<a href="https:" target="_blank">contact</a>&nbsp;our customer service staff by emailing <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4714323737283533070135262035262924221f6924282a">[email&#160;protected]</a>                                or calling us at 1-888-557-3738. If you're outside the United States, you can call us at 001-718-482-6970.
                                 <br /><br />
                             </div>
                         </div>

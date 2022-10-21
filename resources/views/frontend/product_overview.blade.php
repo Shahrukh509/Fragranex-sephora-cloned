@@ -89,7 +89,7 @@
                                 <div class="pop mobile-filter-pop">
                                     <span class="filter-option-more">
                                         <span id="search-filter-count">
-                                            1
+                                            
                                         </span> Filter
                                     </span>
                                     <input class="pop-trigger link-3 mq4hide" name="show-search-filter" value="show" type="radio" aria-label="Show mobile filter">
@@ -171,7 +171,7 @@
                                                 <div class="pop">
                                                     <div class="title c-8-of-12 has-select" name="GenderFilter">
                                                         Gender <span class="ext-text">
-                                                            (1)
+                                                            
                                                         </span>
                                                         <a class="clear-filter" href="#" data-show="true">Clear</a>
                                                     </div>
@@ -578,7 +578,7 @@
                                                 <div class="pop">
                                                     <div class="title has-select" name="InStockFilter">
                                                         In Stock <span class="ext-text">
-                                                            (1)
+                                                            
                                                         </span>
                                                     </div>
                                                     <input class="pop-trigger expand-filter" type="checkbox" checked="checked" value="1" aria-label="Expand in stock filter">
@@ -607,7 +607,7 @@
                                                 </div>
                                                 <div class="apply-filter c-6-of-12">
                                                     <span>
-                                                        Show 4312 results
+                                                        Show results
                                                     </span>
                                                     <input id="show-results" class="pop-trigger" name="show-search-filter" value="hide" type="radio" aria-label="Show results">
                                                 </div>
@@ -867,11 +867,11 @@
                                             <div class="product-img">
                                                 <a href="{{ route('front.product.show',[$product->brand->slug,$product->slug]) }}">
                                                     <picture>
-                                                        <source srcset="{{ $product->image->path??'' }}">
-                                                        <img alt="Light Blue" height="191" width="191" src="{{ $product->image->path??'' }}">
+                                                        <source srcset="{{ asset($product->image->path??'') }}">
+                                                        <img alt="Light Blue" height="191" width="191" src="{{ asset($product->image->path??'') }}">
                                                     </picture>
                                                     <noscript>
-                                                        <img src="{{ $product->image->path??'' }}"
+                                                        <img src="{{ asset($product->image->path??'') }}"
                                                             alt="Light Blue" />
                                                     </noscript>
                                                 </a>
@@ -1087,7 +1087,7 @@
 
                 //get url and make final url for ajax 
 
-                alert('hi');
+                // alert('hi');
                 var url = $(this).attr("href");
                 var append = url.indexOf("?") == -1 ? "?" : "&";
                 var finalURL = url + append + $("#searchform").serialize();

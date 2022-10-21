@@ -46,7 +46,7 @@
                   <div class="d-flex px-2 py-1">
                     <div>
                     
-                      <img src="{{ $department->image??'' }}" class="avatar avatar-sm me-3 border-radius-lg product-image" alt="user1">
+                      <img src="{{ asset($department->image??'') }}" class="avatar avatar-sm me-3 border-radius-lg product-image" alt="user1">
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-0 text-sm product-name">{{ $department->name??'' }}</h6>

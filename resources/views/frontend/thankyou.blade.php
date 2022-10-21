@@ -1,15 +1,15 @@
 @extends('frontend.layouts.master')
 @section('title')
-    Home
+   Order Sccessful
 @endsection
 @section('meta_title')
-    Home
+    Order Sccessful
 @endsection
 @section('meta_description')
-    This is our perfume shop.......
+     Order Sccessful
 @endsection
 @section('meta_keyword')
-    Perfume-shop
+    Order Sccessful
 @endsection
 
 @section('content')
@@ -165,9 +165,9 @@
                                                         aria-label="Light Blue by Dolce &amp; Gabbana 0.8 oz Eau De Toilette Spray for Women">
                                                         <picture>
                                                             <source
-                                                                srcset="{{ $detail->variable_product->image->path??$detail->variable_product->product->image->path }}"
+                                                                srcset="{{ asset($detail->variable_product->image->path??$detail->variable_product->product->image->path) }}"
                                                                 type="image/webp">
-                                                            <img src="{{ $detail->variable_product->image->path??$detail->variable_product->product->image->path }}"
+                                                            <img src="{{ asset($detail->variable_product->image->path??$detail->variable_product->product->image->path) }}"
                                                                 height="218"
                                                                 width="218">
                                                         </picture>
@@ -249,8 +249,15 @@
                                     <div class="line"></div>
                                     <div class="total-section">
                                         <div class="c-6-of-12">
-                                            Total </div>
-                                        <div class="c-6-of-12"><bdo dir="ltr">Rs {{($order->order_type == 'gift')?$order->total_amount+500: $order->total_amount }}</bdo></div>
+                                            Shipping charges for your city is
+                                        </div>
+                                        <div class="c-6-of-12"><bdo dir="ltr">Rs {{ Session::get('shipping_charges') }} </bdo>
+                                        </div>
+                                        <div class="c-6-of-12">
+                                            Total 
+                                        </div>
+                                        <div class="c-6-of-12 " style="padding-left:570px;" ><bdo dir="ltr">Rs {{($order->order_type == 'gift')?$order->total_amount+500: $order->total_amount }}</bdo>
+                                        </div>
                                     </div>
                                 </div>
                             </section>
@@ -260,6 +267,51 @@
             </div>
         </section>
     </div>
+
+    <div class="mobile-wrapper gets-vertical-padding mq4none">
+        <p>
+            Your Order Tracking No #{{ $order->tracking_number }} . We hope you enjoyed shopping with us.
+        </p>
+        <div class="c-12-of-12 gets-vertical-padding">
+        <div class="ship-info-container c-9-of-12">
+        <strong> Shipping to {{ $order->city??'' }}</strong>
+        <br>
+        <strong> Address: {{ $order->address_1??$order->address_2 }}</strong>
+    
+        </div>
+        <div class="cart-detail-container c-3-of-12">
+         @foreach($order->orderDetail as $detail)
+
+        <a href="{{ route('front.product.show',[$detail->variable_product->product->brand->slug,$detail->variable_product->slug]) }}">
+        <picture>
+        <source srcset="{{ asset($detail->variable_product->image->path??$detail->variable_product->product->image->path) }}" type="image/webp">
+        <img src="{{ asset($detail->variable_product->image->path??$detail->variable_product->product->image->path) }}">
+        </picture>
+       
+        </a>
+       
+        @endforeach
+
+        <section>
+    
+            <p>Shipping charges for your city is Rs <strong>{{ Session::get('shipping_charges') }}</strong></p>
+            <p>Total is Rs <strong>{{ number_format($order->total_amount??'') }}</strong> </p>
+          
+        </section>
+
+        </div>
+        </div>
+        <div class="button-container c-12-of-12 gets-vertical-padding">
+        <div class="c-12-of-12">
+        </div>
+        <div class="c-12-of-12" href="#" aria-label="Continue Shopping">
+        <a class="btn-type-2" href="{{ route('front.home') }}">Continue Shopping</a>
+        </div>
+        </div>
+        </div>
+
+
+
     @else
     Your Cart is empty :(
     @endif
@@ -333,5 +385,12 @@
       });
     }
   });
+  $(document).ready(function() {
+    url = "{{ route('front.show.checkout.detail') }}";
+        window.history.pushState(url, "", window.location.href);        
+        window.onpopstate = function() {
+            window.history.pushState(url, "", window.location.href);
+        };
+    });
 </script>
 @endpush

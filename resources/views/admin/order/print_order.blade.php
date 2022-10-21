@@ -20,14 +20,14 @@
                           <tr class="add">
                               <td>Order Tracking No#</td>
                               <td>Billing Address</td>
-                              <td>Shipping Address</td>
+                              <td>City</td>
                               <td>Payment Method</td>
 
                           </tr>
                           <tr class="content">
                               <td class="font-weight-bold">{{ $order->tracking_number??'' }}</td>
                               <td class="font-weight-bold content-wrap">{{ $order->address_1?? $order->address_2 }}</td>
-                              <td class="font-weight-bold">{{ $user->address_1?? $user->address_2 }}</td>
+                              <td class="font-weight-bold">{{ $order->city??'' }}</td>
                               <td class="font-weight-bold">{{ $order->payment_method??'' }}</td>
                             
                           </tr>
@@ -44,7 +44,7 @@
                               <td>Size</td>
                               <td>Qty</td>
                               <td>Price</td>
-                              <td class="text-center">Total</td>
+                            
                           </tr>
                           @foreach($order_detail as $detail)
                           <tr class="content">
@@ -65,11 +65,13 @@
                   <table class="table table-borderless">
                       <tbody>
                           <tr class="add">
-                            
+                            <td class="text-center">Shipping Charges</td>
                               <td class="text-center">Total</td>
                           </tr>
+                    
                           <tr class="content">
-                              <td class="text-center">Rs {{ $order->total_amount??'' }}</td>
+                            <td class="text-center">Rs {{ Session::get('shipping_charges') }}</td>
+                              <td class="text-center">Rs {{ number_format($order->total_amount??'') }}</td>
                           </tr>
                       </tbody>
                   </table>

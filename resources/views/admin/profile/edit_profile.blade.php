@@ -25,6 +25,12 @@
     <span class="text-danger error-text email_error"></span>
   </div>
 
+  <div class="form-control">
+    <label for="fname">Your Email</label>
+    <input type="pasword" id="mt" name="password"  value="{{ Auth()->user()->password }}">
+    <span class="text-danger error-text email_error"></span>
+  </div>
+
   {{-- <div class="form-control">
     <label for="fname">Your Password</label>
     <input type="password" id="mt" name="password"  value="{{ Auth()->user()->password }}">

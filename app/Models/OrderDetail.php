@@ -12,7 +12,8 @@ class OrderDetail extends Model
     protected $guarded=[];
 
 
-    public function variable_product(){
+    public function variable_product()
+    {
 
       
         return $this->belongsTo(ProductVariation::class,'product_variation_id','id');

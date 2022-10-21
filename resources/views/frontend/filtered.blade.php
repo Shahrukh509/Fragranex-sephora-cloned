@@ -1,15 +1,15 @@
 @extends('frontend.layouts.master')
 @section('title')
-{{ $category->title?? 'No Title' }}
+{{ $category->title?? 'Products' }}
 @endsection
 @section('meta_title')
-{{ $category->meta_title?? 'No MetaTitle' }}
+{{ $category->meta_title?? 'Products' }}
 @endsection
 @section('meta_description')
-{{ $category->meta_description?? 'No MetaDescription' }}
+{{ $category->meta_description?? 'Products' }}
 @endsection
 @section('meta_keyword')
-{{ $category->meta_keyword?? 'No MetaKeyword' }}
+{{ $category->meta_keyword?? 'Products' }}
 @endsection
 
 @section('content')
@@ -57,7 +57,7 @@
                                 </span>
                                 <span class="totalResults">{{ $products->total() }}</span>
                             </div>
-                            <div class="sort-by-desk select-container">
+                            {{-- <div class="sort-by-desk select-container">
                                 <label>Order by:</label>
                                 <select name="orderby" class="link-3" id="orderby" aria-label="Sort search by">
                                     <option selected="disabled">Choose your filter</option>
@@ -83,7 +83,7 @@
                                         Price: High to Low
                                     </option>
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="search-filter-options c4-3-of-12 c5-2-of-12 std-side-padding">
@@ -91,7 +91,7 @@
                                 <div class="pop mobile-filter-pop">
                                     <span class="filter-option-more">
                                         <span id="search-filter-count">
-                                            1
+                                            
                                         </span> Filter
                                     </span>
                                     <input class="pop-trigger link-3 mq4hide" name="show-search-filter" value="show" type="radio" aria-label="Show mobile filter">
@@ -106,7 +106,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="r sort-by block-padding">
+                                            {{-- <div class="r sort-by block-padding">
                                                 <div>Sort by</div>
                                                 <div>
                                                     <label class="link-3 block-padding">
@@ -165,7 +165,7 @@
                                                         Price: High to Low
                                                     </label>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="filter-by block-padding">
                                                 Filter By
                                             </div>
@@ -523,7 +523,7 @@
                                                     <div class="title " name="PriceFilter[]">
                                                         Price <span class="ext-text">
                                                         </span>
-                                                        <a class="clear-filter" href="#" data-show="null">Clear</a>
+                                                        {{-- <a class="clear-filter" href="#" data-show="null">Clear</a> --}}
                                                     </div>
                                                     <input class="pop-trigger link-3 expand-filter" type="checkbox" checked="checked" aria-label="Expand price filter">
                                                     <span></span>
@@ -531,14 +531,14 @@
                                                         <div>
                                                             <label class="block-padding">
                                                                 <input class="price_1" type="checkbox" name="PriceFilter[]"
-                                                                    value="10" aria-label="Filter by: Under $10">
+                                                                    value="10" aria-label="Filter by: Under $10" >
                                                                 <span class="checkbox-box">
                                                                     <img class=""
                                                                         src="https://img.fragrancex.com/images/assets/ui/checkmark-white.svg"
                                                                         data-src="https://img.fragrancex.com/images/assets/ui/checkmark-white.svg"
                                                                         width="16" height="16" alt="">
                                                                 </span>
-                                                                <a href="/products/perfume-under-10.html"
+                                                                <a href="#"
                                                                     class="price_1 search-filter-link link-3 shopbyprice-filter-link">Under
                                                                     <bdo dir="ltr">Rs&nbsp;1500</bdo></a>
                                                             </label>
@@ -553,7 +553,7 @@
                                                                         data-src="https://img.fragrancex.com/images/assets/ui/checkmark-white.svg"
                                                                         width="16" height="16" alt="">
                                                                 </span>
-                                                                <a href="/products/perfume-10-25.html"
+                                                                <a href="#"
                                                                     class="price_2 search-filter-link link-3 shopbyprice-filter-link">Under<bdo
                                                                         dir="ltr"> Rs&nbsp;3000</bdo></a>
                                                             </label>
@@ -568,7 +568,7 @@
                                                                         data-src="https://img.fragrancex.com/images/assets/ui/checkmark-white.svg"
                                                                         width="16" height="16" alt="">
                                                                 </span>
-                                                                <a href="/products/perfume-25-50.html"
+                                                                <a href="#"
                                                                     class="price_3 search-filter-link link-3 shopbyprice-filter-link">Under <bdo
                                                                         dir="ltr">Rs&nbsp;5000</bdo></a>
                                                             </label>
@@ -583,8 +583,8 @@
                                                                         data-src="https://img.fragrancex.com/images/assets/ui/checkmark-white.svg"
                                                                         width="16" height="16" alt="">
                                                                 </span>
-                                                                <a href="/products/perfume-over-50.html"
-                                                                    class="price_4 search-filter-link link-3 shopbyprice-filter-link">Under<bdo
+                                                                <a href="#"
+                                                                    class="price_4 search-filter-link link-3 shopbyprice-filter-link">Above<bdo
                                                                         dir="ltr">Rs&nbsp;5000 +</bdo></a>
                                                             </label>
                                                         </div>
@@ -624,7 +624,7 @@
                                                 </div>
                                                 <div class="apply-filter c-6-of-12">
                                                     <span>
-                                                        Show 4312 results
+                                                        Show results
                                                     </span>
                                                     <input id="show-results" class="pop-trigger" name="show-search-filter" value="hide" type="radio" aria-label="Show results">
                                                 </div>
@@ -660,8 +660,8 @@
                                     </a>
                                 </span>
                                 <div class="span" id="product-read-more-text" style="display: none;">
-                                    popular luxury perfume <a href="https://www.a.com/products/allbrands.html">brands</a> at prices up to 80% off of retail. FragranceX has been a trusted marketplace for online fragrance shopping for years, and our
-                                    <a href="https://www.a.com/customerservice/testimonials.html">customer testimonials
+                                    popular luxury perfume <a href="#">brands</a> at prices up to 80% off of retail. FragranceX has been a trusted marketplace for online fragrance shopping for years, and our
+                                    <a href="#">customer testimonials
                                         </a> will back that up. Stop spending too much money on women’s perfumes and start smelling great with the perfect scent you’ve been looking for. Whether you know exactly the
                                     brand you are looking for or are looking to try something new, you’re in the right place for the best perfume deals!<br><br>
                                     <h2>Things to Consider When Buying Perfumes Online</h2> <br>The perfume you wear can say a lot about you. Some scents are better for casual everyday use, while others may be bolder fragrances that can make an impression
@@ -677,20 +677,20 @@
                                     </ul>Knowing how bold of a scent you are looking for and how long-lasting you want it to be can help you decide on which perfume to get.<br><br>
                                     <h2>Are Perfume and Cologne the Same?</h2> <br>No. In everyday language, people usually use “perfume” to refer to a fragrance for women and “cologne” to refer to a scent for men. But when you see those words on a fragrance
                                     bottle or box, they’re referring to the concentration of scented oil the product contains. The difference in perfume versus cologne is that a scent labeled “perfume” or “parfum” is around 20% to 30% perfume oil, while
-                                    <a href="https://www.a.com/products/_cid_cologne__category.html">cologne</a> has a 2% to 4% concentration of oil. At FragranceX, we carry both designer cologne and luxury perfume.<br><br>
+                                    <a href="#">cologne</a> has a 2% to 4% concentration of oil. At FragranceX, we carry both designer cologne and luxury perfume.<br><br>
                                     <h2>Understanding Perfume Notes and Scent Families</h2> <br>Fragrances are grouped into four families: floral, oriental, woody, and fresh. Scents in these categories fall into subfamilies, such as mossy wood or soft floral.
                                     The <a href="https://www.a.com/blog/fragrance-wheel/">fragrance wheel</a> shows how these families and subfamilies are organized. Each family of fragrances will tend to incorporate certain notes, the base scents that
                                     go into a perfume or cologne. For instance, floral scents often include notes like jasmine and rose, while woody scents may include notes like sandalwood and vetiver. Most people have a favorite fragrance family or
                                     subfamily, and once you know what that is, you can use this information to find similar scents the person might like. At FragranceX, we have every kind of perfume for sale, from fruity to water to dry wood and beyond.
                                     Finding a signature scent that works for you at an unbeatable price has never been easier!<br><br>
                                     <h2>What Is the Right Perfume for Me?</h2> <br>With all of the different notes and fragrance families, it can be difficult to know which scent suits you, so we created a
-                                    <a href="https://www.a.com/fragrance-information/perfume-quiz.html">perfume
+                                    <a href="#">perfume
                                         quiz</a> to help you decide. The right perfume will be different for everyone, but our quiz can be a great starting point to finding your new favorite fragrance. Once you have
-                                    an idea of what you’re looking for, order a few of our perfume store’s low-cost branded <a href="https://www.a.com/products/perfume_samples.html">perfume
+                                    an idea of what you’re looking for, order a few of our perfume store’s low-cost branded <a href="#">perfume
                                         samples</a> so you can see how they work with your unique body chemistry.<br><br>
                                     <h2>What Is the Best Perfume to Give as a Gift?</h2> <br>Choosing a designer fragrance for someone else can be a challenge, but there are a few clues that may help you make your choice. What types of scents do they usually
                                     wear? Can you recognize their usual cologne, or can you pick out a few notes of their perfume? If your mom always wears Red Door or your best friend often smells like vanilla, that’s a good place to start. One of our
-                                    discount <a href="https://www.a.com/products/giftsets.html">perfume gift
+                                    discount <a href="#">perfume gift
                                         sets</a> in their signature scent or a similar fragrance is likely to be appreciated. If you’re truly stumped, check out our <a href="https://www.a.com/blog/">blog</a> to explore popular perfumes for women.
                                     <br><br>
                                     <h2>Are Perfume Samples Stronger?</h2> <br>No. Our perfume samples are just that: samples. They are small glass vials ranging from 0.03 oz. to 0.10 oz. that contain the same perfume brands for women you would normally get,
@@ -703,7 +703,7 @@
                                     technology by Verisign.<br><br>
                                     <h2>What Is the Best Online Perfume Store?</h2> <br>Thousands of loyal customers have recognized that FragranceX is the best place to buy perfume online, as you can see from our many glowing reviews. Unlike some other discount
                                     perfume websites, all of our products are 100% genuine, and we carry a wide range of high-quality products, including hard-to-find and discontinued fragrances. At FragranceX, we are also committed to excellent customer
-                                    service. If you have any questions, please read our <a href="https://www.a.com/customerservice/faq.html/">FAQs</a>; if you need additional support while shopping, feel free to <a href="https://www.a.com/customerservice/contact.html">contact us</a>                                    so that our team can help you with your purchase promptly. We even offer a loyalty program: Sign up and you’ll be able to earn extra discounts on future orders. When you shop with FragranceX, you’ll soon see how easy
+                                    service. If you have any questions, please read our <a href="https://www.a.com/customerservice/faq.html/">FAQs</a>; if you need additional support while shopping, feel free to <a href="#">contact us</a>                                    so that our team can help you with your purchase promptly. We even offer a loyalty program: Sign up and you’ll be able to earn extra discounts on future orders. When you shop with FragranceX, you’ll soon see how easy
                                     it is to save big on your favorite perfume for women!
                                     <br><br>
                                     <h2>Frequently Asked Questions About Perfume</h2><br>
@@ -725,10 +725,10 @@
                                     <span>
                                         <h2>Buy Luxury Perfumes on Sale at a Discount</h2> <br>FragranceX offers an enormous
                                         inventory of popular luxury perfume <a
-                                            href="https://www.a.com/products/allbrands.html">brands</a> at prices
+                                            href="#">brands</a> at prices
                                         up to 80% off of retail. FragranceX has been a trusted marketplace for online
                                         fragrance shopping for years, and our <a
-                                            href="https://www.a.com/customerservice/testimonials.html">customer
+                                            href="#">customer
                                             testimonials</a> will back that up. Stop spending too much money on women’s
                                         perfumes and start smelling great with the perfect scent you’ve been looking for.
                                         Whether you know exactly the brand you are
@@ -774,7 +774,7 @@
                                         referring to the concentration of scented oil the product contains. The difference
                                         in perfume versus cologne is that a scent labeled “perfume” or “parfum” is around
                                         20% to 30% perfume oil, while <a
-                                            href="https://www.a.com/products/_cid_cologne__category.html">cologne</a>
+                                            href="#">cologne</a>
                                         has a 2% to 4% concentration of oil. At FragranceX, we carry both designer cologne
                                         and luxury perfume.<br><br>
                                         <h2>Understanding Perfume Notes and Scent Families</h2> <br>Fragrances are grouped
@@ -792,12 +792,12 @@
                                         easier!<br><br>
                                         <h2>What Is the Right Perfume for Me?</h2> <br>With all of the different notes and
                                         fragrance families, it can be difficult to know which scent suits you, so we created
-                                        a <a href="https://www.a.com/fragrance-information/perfume-quiz.html">perfume
+                                        a <a href="#">perfume
                                             quiz</a> to help you decide. The right perfume will be different for everyone,
                                         but our quiz can be a great starting point to finding your new favorite fragrance.
                                         Once you have an idea of what you’re looking for, order a few of our perfume store’s
                                         low-cost branded <a
-                                            href="https://www.a.com/products/perfume_samples.html">perfume
+                                            href="#">perfume
                                             samples</a> so you can see how they work with your unique body
                                         chemistry.<br><br>
                                         <h2>What Is the Best Perfume to Give as a Gift?</h2> <br>Choosing a designer
@@ -806,7 +806,7 @@
                                         recognize their usual cologne, or can you pick out a few notes of their perfume? If
                                         your mom always wears Red Door or your best friend often smells like vanilla, that’s
                                         a good place to start. One of our discount <a
-                                            href="https://www.a.com/products/giftsets.html">perfume gift sets</a>
+                                            href="#">perfume gift sets</a>
                                         in their signature scent or a similar fragrance is likely to be appreciated. If
                                         you’re truly stumped, check out our <a
                                             href="https://www.a.com/blog/">blog</a> to explore popular perfumes for
@@ -836,9 +836,9 @@
                                         of our products are 100% genuine, and we carry a wide range of high-quality
                                         products, including hard-to-find and discontinued fragrances. At FragranceX, we are
                                         also committed to excellent customer service. If you have any questions, please read
-                                        our <a href="https://www.a.com/customerservice/faq.html/">FAQs</a>; if you
+                                        our <a href="#">FAQs</a>; if you
                                         need additional support while shopping, feel free to <a
-                                            href="https://www.a.com/customerservice/contact.html">contact us</a> so
+                                            href="#">contact us</a> so
                                         that our team can help you with your purchase promptly. We even offer a loyalty
                                         program: Sign up and you’ll be able to earn extra discounts on future orders. When
                                         you shop with FragranceX, you’ll soon see how easy it is to save big on your
@@ -889,30 +889,27 @@
                                             <div class="product-img">
                                                 <a href="{{ route('front.product.show',[$brand->slug,$product->slug]) }}">
                                                     <picture>
-                                                        <source srcset="{{ $image->path??'' }}">
-                                                        <img alt="Light Blue" height="191" width="191" src="{{ $image->path??'' }}">
+                                                        <source srcset="{{ asset($image->path??'') }}">
+                                                        <img alt="{{ $product->name??'' }}" height="191" width="191" src="{{ asset($image->path??'') }}">
                                                     </picture>
                                                     <noscript>
-                                                        <img src="{{ $image->path??'' }}"
-                                                            alt="Light Blue" />
+                                                        <img src="{{ asset($image->path??'') }}"
+                                                            alt="{{ $product->name??'' }}" />
                                                     </noscript>
                                                 </a>
                                             </div>
                                             <div class="product-desc-1">
                                                 <h3 class="h3 serif">
-                                                    <a class="animate" href="/products/_cid_perfume-am-lid_l-am-pid_884w__products.html" aria-label="Light Blue"></a>
+                                                    <a class="animate" href="#" aria-label="{{ $product->name??'' }}"></a>
                                                     <a class="link-2" href="{{ route('front.product.show',[$brand->slug,$product->slug]) }}">
                                                     <picture>
                                                         <span>{{ $product->name }}</span>
                                                     </a>
                                                 </h3>
                                             </div>
-                                            <div class="product-review " id="review-884W">
+                                            <div>
                                                 <div class="p-w-r">
-                                                    <div class="pr-stars">
-                                                        <div class="stars-total" style="width: 92.00%;"></div>
-                                                    </div>
-                                                    <div class="review-count"><span>(1731)</span></div>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="product-desc-2">
@@ -925,7 +922,7 @@
                                             <div class="product-desc-3">
                                                 Up to 0% Off
                                             </div>
-                                            <input type="hidden" class="ga-item-model" value="{&quot;NameShort&quot;:&quot;Light Blue&quot;,&quot;UnitPrice&quot;:39.81,&quot;Brand&quot;:&quot;Dolce &amp; Gabbana&quot;,&quot;Category&quot;:&quot;Perfume&quot;,&quot;Type&quot;:&quot;Eau De Toilette Spray&quot;,&quot;Size&quot;:&quot;0.8 oz&quot;,&quot;AutoSku&quot;:&quot;418223&quot;,&quot;Currency&quot;:&quot;USD&quot;,&quot;Qty&quot;:1,&quot;ParentCode&quot;:&quot;884W&quot;}">
+                                            <input type="hidden" class="ga-item-model" value="{&quot;NameShort&quot;:&quot;{{ $product->name??'' }}&quot;,&quot;UnitPrice&quot;:39.81,&quot;Brand&quot;:&quot;Dolce &amp; Gabbana&quot;,&quot;Category&quot;:&quot;Perfume&quot;,&quot;Type&quot;:&quot;Eau De Toilette Spray&quot;,&quot;Size&quot;:&quot;0.8 oz&quot;,&quot;AutoSku&quot;:&quot;418223&quot;,&quot;Currency&quot;:&quot;USD&quot;,&quot;Qty&quot;:1,&quot;ParentCode&quot;:&quot;884W&quot;}">
                                         </div>
                                    
                                     </div>

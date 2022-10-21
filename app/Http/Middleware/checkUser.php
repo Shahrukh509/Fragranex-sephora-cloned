@@ -18,13 +18,18 @@ class checkUser
     public function handle(Request $request, Closure $next)
     {
         $user = User::where('ip_address',request()->ip())->first();
-        if($user){
+        $cart = \Cart::getContent()->count();
+        if($user && $cart){
           
             return $next($request); 
 
 
+        }if($user && !$cart){
+
+            return redirect('/');
         }
-        else{
+
+        if(!$user){
 
             return redirect('order/signin');
 

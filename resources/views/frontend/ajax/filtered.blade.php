@@ -12,11 +12,11 @@
                                     <div class="product-img">
                                         <a href="{{ route('front.product.show',[$brand->slug,$product->slug]) }}">
                                             <picture>
-                                                <source srcset="{{ $image->path??'' }}">
-                                                <img alt="\" height="191" width="191" src="{{ $image->path??'' }}">
+                                                <source srcset="{{ asset($image->path??'') }}">
+                                                <img alt="\" height="191" width="191" src="{{ asset($image->path??'') }}">
                                             </picture>
                                             <noscript>
-                                                <img src="{{ $image->path??'' }}"
+                                                <img src="{{ asset($image->path??'') }}"
                                                     alt="" />
                                             </noscript>
                                         </a>
@@ -31,10 +31,10 @@
                                     </div>
                                     <div class="product-review " id="review-884W">
                                         <div class="p-w-r">
-                                            <div class="pr-stars">
+                                            {{-- <div class="pr-stars">
                                                 <div class="stars-total" style="width: 92.00%;"></div>
-                                            </div>
-                                            <div class="review-count"><span>(1731)</span></div>
+                                            </div> --}}
+                                            {{-- <div class="review-count"><span>(1731)</span></div> --}}
                                         </div>
                                     </div>
                                     <div class="product-desc-2">
@@ -65,7 +65,8 @@
                            
                                 
                            
-
+                        @else
+                        <h5>No Product Found !</h5>
                          @endif
                         </div>
 

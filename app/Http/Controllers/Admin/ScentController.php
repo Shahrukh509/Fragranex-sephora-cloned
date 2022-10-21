@@ -70,7 +70,7 @@ class ScentController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/scent'), $filename);
-            $path = url('/public/admin/images/scent/').'/'.$filename;
+            $path = '/public/admin/images/scent/'.$filename;
 
         }
 
@@ -141,7 +141,7 @@ class ScentController extends Controller
             $filename = $image->getClientOriginalName();
 
             $path = $image->move(public_path('admin/images/scent'), $filename);
-            $path = url('/public/admin/images/scent/').'/'.$filename;
+            $path = '/public/admin/images/scent/'.$filename;
 
         }
 

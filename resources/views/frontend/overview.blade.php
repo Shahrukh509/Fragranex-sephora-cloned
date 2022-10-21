@@ -1,15 +1,15 @@
 @extends('frontend.layouts.master')
 @section('title')
-{{ $category->title?? 'No Title' }}
+{{ $category->title?? 'Overview' }}
 @endsection
 @section('meta_title')
-{{ $category->meta_title?? 'No MetaTitle' }}
+{{ $category->meta_title?? 'Overview' }}
 @endsection
 @section('meta_description')
-{{ $category->meta_description?? 'No MetaDescription' }}
+{{ $category->meta_description?? 'Overview' }}
 @endsection
 @section('meta_keyword')
-{{ $category->meta_keyword?? 'No MetaKeyword' }}
+{{ $category->meta_keyword?? 'Overview' }}
 @endsection
 
 @section('content')
@@ -55,7 +55,7 @@
                                 </span>
                                 <span class="totalResults">{{ $products->total() }}</span>
                             </div>
-                            <div class="sort-by-desk select-container">
+                            {{-- <div class="sort-by-desk select-container">
                                 <label>Order by:</label>
                                 <select name="orderby" class="link-3" id="orderby" aria-label="Sort search by">
                                     <option selected="disabled">Choose your filter</option>
@@ -81,7 +81,7 @@
                                         Price: High to Low
                                     </option>
                                 </select>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="search-filter-options c4-3-of-12 c5-2-of-12 std-side-padding">
@@ -567,7 +567,7 @@
                                                                         width="16" height="16" alt="">
                                                                 </span>
                                                                 <a href="#"
-                                                                    class="price_4 search-filter-link link-3 shopbyprice-filter-link">Under<bdo
+                                                                    class="price_4 search-filter-link link-3 shopbyprice-filter-link">Above<bdo
                                                                         dir="ltr">Rs&nbsp;5000 +</bdo></a>
                                                             </label>
                                                         </div>
@@ -578,7 +578,7 @@
                                                 <div class="pop">
                                                     <div class="title has-select" name="InStockFilter">
                                                         In Stock <span class="ext-text">
-                                                            (1)
+                                                            
                                                         </span>
                                                     </div>
                                                     <input class="pop-trigger expand-filter" type="checkbox" checked="checked" value="1" aria-label="Expand in stock filter">
@@ -607,7 +607,7 @@
                                                 </div>
                                                 <div class="apply-filter c-6-of-12">
                                                     <span>
-                                                        Show 4312 results
+                                                        Show  results
                                                     </span>
                                                     <input id="show-results" class="pop-trigger" name="show-search-filter" value="hide" type="radio" aria-label="Show results">
                                                 </div>
@@ -867,18 +867,18 @@
                                             <div class="product-img">
                                                 <a href="{{ route('front.product.show',[$product->brand->slug,$product->slug,$product->category->id]) }}">
                                                     <picture>
-                                                        <source srcset="{{ $product->image->path??'' }}">
-                                                        <img alt="Light Blue" height="191" width="191" src="{{ $product->image->path??'' }}">
+                                                        <source srcset="{{ asset($product->image->path??'') }}">
+                                                        <img alt="{{ $product->name??'' }}" height="191" width="191" src="{{ asset($product->image->path??'') }}">
                                                     </picture>
                                                     <noscript>
-                                                        <img src="{{ $product->image->path??'' }}"
-                                                            alt="Light Blue" />
+                                                        <img src="{{ asset($product->image->path??'') }}"
+                                                            alt="{{ $product->name??'' }}" />
                                                     </noscript>
                                                 </a>
                                             </div>
                                             <div class="product-desc-1">
                                                 <h3 class="h3 serif">
-                                                    <a class="animate" href="{{ route('front.product.show',[$product->brand->slug,$product->slug,$product->category->id]) }}" aria-label="Light Blue"></a>
+                                                    <a class="animate" href="{{ route('front.product.show',[$product->brand->slug,$product->slug,$product->category->id]) }}" aria-label="{{ $product->name??'' }}"></a>
                                                     <a class="link-2" href="{{ route('front.product.show',[$product->brand->slug,$product->slug,$product->category->id]) }}">
                                                         <span>{{ $product->name }}</span>
                                                     </a>
@@ -887,9 +887,9 @@
                                             <div class="product-review " id="review-884W">
                                                 <div class="p-w-r">
                                                     <div class="pr-stars">
-                                                        <div class="stars-total" style="width: 92.00%;"></div>
+                                                        
                                                     </div>
-                                                    <div class="review-count"><span>(1731)</span></div>
+                                                    {{-- <div class="review-count"><span>(1731)</span></div> --}}
                                                 </div>
                                             </div>
                                             <div class="product-desc-2">
@@ -915,7 +915,7 @@
                                    <div class="row">
                                     <div class="col-lg-6">
                                         <div class="search-page-nav">
-                                        {{ $products->links() }}
+                                            {{$products->links('pagination::bootstrap-5')}}
                                         </div>
                                     </div>
                                    </div>

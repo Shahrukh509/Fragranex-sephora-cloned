@@ -57,8 +57,10 @@ class HomeController extends Controller
     
     if($category == 'perfume' && $name == 'type'){
 
+    
+
        $data['category'] = Category::where('slug','perfume-women')->first();
-       $data['products'] = Product::where('category_id',$data['category']->id)->where('status',1)->paginate(4);
+       $data['products'] = Product::where('category_id',$data['category']->id)->where('status',1)->paginate(10);
        $data['span'] = ['Shopping','Perfume'];
        $data['brands'] = Brand::where('status',1)->get()->toArray();
        $data['types'] = Type::where('status',1)->get()->toArray();
@@ -71,7 +73,7 @@ class HomeController extends Controller
     if($category == 'fragrance' && $name == 'type'){
 
        $data['category'] = Category::where('slug','perfume-unisex')->first();
-         $data['products'] = Product::where('category_id',$data['category']->id)->where('status',1)->paginate(4);
+         $data['products'] = Product::where('category_id',$data['category']->id)->where('status',1)->paginate(10);
        $data['span'] = ['Shopping','Fragrance'];
        $data['brands'] = Brand::where('status',1)->get()->toArray();
        $data['types'] = Type::where('status',1)->get()->toArray();
@@ -83,7 +85,7 @@ class HomeController extends Controller
    if($category == 'cologne' && $name == 'type'){
 
        $data['category'] = Category::where('slug','cologne-men')->first();
-        $data['products'] = Product::where('category_id',$data['category']->id)->where('status',1)->paginate(4);
+        $data['products'] = Product::where('category_id',$data['category']->id)->where('status',1)->paginate(10);
         $data['span'] = ['Shopping','Cologne'];
          $data['brands'] = Brand::where('status',1)->get()->toArray();
        $data['types'] = Type::where('status',1)->get()->toArray();
@@ -97,7 +99,7 @@ class HomeController extends Controller
     
 
          $type = Type::where('name',$category)->first();
-        $data['products'] = Product::where('type_id',$type->id)->where('status',1)->paginate(4);
+        $data['products'] = Product::where('type_id',$type->id)->where('status',1)->paginate(10);
         $data['span'] = ['Shopping','Sets',$category];
          $data['brands'] = Brand::where('status',1)->get()->toArray();
        $data['types'] = Type::where('status',1)->get()->toArray();
@@ -111,7 +113,7 @@ class HomeController extends Controller
 
         $dept = Department::where('slug',$category)->first();
 
-         $data['products'] = Product::where('department_id',$dept->id)->where('status',1)->paginate(4);
+         $data['products'] = Product::where('department_id',$dept->id)->where('status',1)->paginate(10);
         $data['span'] = ['Shopping',$category];
          $data['brands'] = Brand::where('status',1)->get()->toArray();
        $data['types'] = Type::where('status',1)->get()->toArray();
@@ -149,9 +151,6 @@ class HomeController extends Controller
 
         if(!$category){
 
-
-
-
              $data['category'] = Category::where('slug','perfume-unisex')->first();
              $brand = Brand::where('slug',$parent)->first();
              $data['products'] = Product::where('brand_id',$brand->id)->where('status',1)->paginate(1);
@@ -174,16 +173,22 @@ class HomeController extends Controller
 
 
                $brand_id = Brand::where('slug',$parent)->pluck('id')->first();
-                // dd($cat_id);
+                // dd('hi');
 
 
                $data['span'] = ['Brand',$parent,$category];
 
-               $data['product'] = Product::where('brand_id',$brand_id)->orWhere('category_id',$cat_id)->where('status',1)->first();
 
-               // dd($data['span']);
-
-                // dd($parent,$category);  
+               if($cat_id == ''){
+                   
+                   $data['product'] = Product::where('brand_id',$brand_id)->where('slug',$category)->where('status',1)->first();
+                   
+                   
+               }else{
+                    $data['product'] = Product::where('brand_id',$brand_id)->where('slug',$category)->where('category_id',$cat_id)->where('status',1)->first();
+                    // dd($data['product']);
+                   
+               }  
 
         
 
@@ -292,7 +297,8 @@ class HomeController extends Controller
 
 
     public function Filtered(Request $request){
-
+    
+      // dd($request->search);
 
         if(!empty(request()->query()))
         {
@@ -420,7 +426,7 @@ class HomeController extends Controller
 
          })->when($prices, function($query) use ($prices){
           $query->Where('max_price','<=',$prices[count($prices)-1]);
-        })->paginate(4);
+        })->paginate(10);
          
 
 
@@ -466,7 +472,7 @@ class HomeController extends Controller
         }else{
 
               // $data['category'] = Category::where('slug','perfume-women')->first();
-               $data['products'] = Product::where('status',1)->paginate(2);
+               $data['products'] = Product::where('status',1)->paginate(10);
                $data['span'] = ['Shopping','Perfume'];
                $data['brands'] = Brand::where('status',1)->get()->toArray();
                $data['types'] = Type::where('status',1)->get()->toArray();
@@ -478,6 +484,69 @@ class HomeController extends Controller
 
       }
 
+
+
+    }
+
+    public function SearchQuery(Request $request){
+
+      $data['products'] = Product::where('status',1)->paginate(10);
+       $cat = Category::where('slug','like','%'.$request->search.'%')->where('parent_id','!=',null)->first('id');
+
+      //  dd($cat);
+
+
+       
+       $brand =Brand::where('name','like','%'.$request->search.'%')->first('id');
+
+       if($brand){
+
+        $data['products'] = Product::where('brand_id',$brand->id)->paginate(10);
+
+
+       }
+       
+       $department =Department::where('name','like','%'.$request->search.'%')->first('id');
+
+       if($department){
+
+        $data['products'] = Product::where('department_id',$department->id)->paginate(10);
+
+
+       }
+     
+       $type = Type::where('name','like','%'.$request->search.'%')->first('id');
+       
+     
+
+       if($type){
+      
+        
+        $data['products'] = Product::where('type_id',$type->id)->paginate(10);
+       
+
+
+       }
+       
+       $scent =ScentNote::where('name','like','%'.$request->search.'%')->first('id');
+
+       if($scent){
+
+        $data['products'] = Product::where('scent_notes_id',$scent->id)->paginate(10);
+
+
+       }
+
+       if($cat){
+
+        $data['products'] = Product::where('category_id',$cat->id)->paginate(10);
+
+
+       }
+
+        // dd($data['products']);
+
+    return (string) view('frontend.filtered',$data); 
 
 
     }
